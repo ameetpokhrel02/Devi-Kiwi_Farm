@@ -74,7 +74,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-6">
+          <nav className="hidden md:flex space-x-6 items-center">
             {navLinks.map((link) => {
               const Icon = link.icon;
               return (
@@ -91,6 +91,15 @@ const Navbar: React.FC = () => {
                 </a>
               );
             })}
+            {/* Auth Icon beside Contact */}
+            <button
+              className="ml-2 p-0 bg-transparent border-none hover:text-primary focus:outline-none"
+              onClick={() => setShowAuth('signup')}
+              aria-label="Sign Up / Login"
+              style={{ display: 'flex', alignItems: 'center' }}
+            >
+              <UserPlus className="w-6 h-6 text-primary" />
+            </button>
           </nav>
 
           {/* CTA Button */}
@@ -140,14 +149,6 @@ const Navbar: React.FC = () => {
           </nav>
         </div>
       </div>
-      {/* Floating Sign Up Button */}
-      <button
-        className="fixed z-50 bottom-6 right-6 bg-primary text-primary-foreground rounded-full shadow-lg p-4 flex items-center justify-center hover:bg-primary/90 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50"
-        onClick={() => setShowAuth('signup')}
-        aria-label="Sign Up"
-      >
-        <UserPlus className="w-7 h-7" />
-      </button>
       {/* Auth Modal (split login/signup) */}
       {showAuth && <AuthModal />}
     </header>

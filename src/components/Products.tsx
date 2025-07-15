@@ -112,10 +112,10 @@ const Products = () => {
 
         {/* Products Pagination */}
         <div className="flex flex-col items-center mb-20">
-          <div className="w-full overflow-x-auto">
-            <div className="flex flex-row gap-4 sm:gap-8 justify-center md:justify-start">
+          <div className="w-full">
+            <div className="flex flex-col gap-4 sm:flex-row sm:gap-8 justify-center md:justify-start">
               {paginatedProducts.map((product, index) => (
-                <Card key={index} className="w-full max-w-xs sm:min-w-[320px] border-0 bg-gradient-card hover-lift overflow-hidden mb-8 flex-shrink-0">
+                <Card key={index} className="w-full sm:max-w-xs sm:min-w-[320px] border-0 bg-gradient-card hover-lift overflow-hidden mb-8 flex-shrink-0">
                   <div className="relative">
                     <img 
                       src={product.image} 
