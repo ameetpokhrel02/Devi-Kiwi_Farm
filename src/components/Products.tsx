@@ -64,16 +64,15 @@ const Products = () => {
   ];
 
   const [page, setPage] = useState(1);
-  const productsPerPage = page === 1 ? 3 : 1;
-  const pageCount = products.length > 3 ? 1 + (products.length - 3) : 1;
+  const productsPerPage = page === 1 ? 4 : 1;
+  const pageCount = products.length > 4 ? 1 + (products.length - 4) : 1;
   let paginatedProducts;
   if (page === 1) {
-    paginatedProducts = products.slice(0, 3);
+    paginatedProducts = products.slice(0, 4);
   } else {
-    paginatedProducts = [products[page + 1]];
-    // page 2 shows products[3], page 3 shows products[4], etc.
-    // page index: 2 => products[3], 3 => products[4]
-    // products[page + 1] because page 2 => index 3
+    paginatedProducts = [products[page + 2]];
+    // page 2 shows products[4], page 3 shows products[5], etc.
+    // products[page + 2] because page 2 => index 4
   }
 
   const handlePageChange = (newPage: number) => {
@@ -114,9 +113,9 @@ const Products = () => {
         {/* Products Pagination */}
         <div className="flex flex-col items-center mb-20">
           <div className="w-full overflow-x-auto">
-            <div className="flex flex-row gap-8 justify-center md:justify-start">
+            <div className="flex flex-row gap-4 sm:gap-8 justify-center md:justify-start">
               {paginatedProducts.map((product, index) => (
-                <Card key={index} className="min-w-[320px] max-w-xs border-0 bg-gradient-card hover-lift overflow-hidden mb-8 flex-shrink-0">
+                <Card key={index} className="w-full max-w-xs sm:min-w-[320px] border-0 bg-gradient-card hover-lift overflow-hidden mb-8 flex-shrink-0">
                   <div className="relative">
                     <img 
                       src={product.image} 
