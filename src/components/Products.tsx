@@ -1,10 +1,18 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Star, ShoppingCart, Leaf, Award, Zap } from "lucide-react";
 import kiwiImage from "@/assets/kiwi-fruits.jpg";
 import kiwiOilImage from "@/assets/kiwi-iol.png";
-import kiwiCreamImage from "@/assets/kiwi-cream.png"
-import { Description } from "@radix-ui/react-toast";
+import kiwiCreamImage from "@/assets/kiwi-cream.png";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
+} from "@/components/ui/pagination";
 
 const Products = () => {
   const products = [
@@ -49,14 +57,28 @@ const Products = () => {
       price: "$15.75",
       unit: "per 20ml bottle",
       image: kiwiCreamImage,
-      rating: "5.0",
+      rating: 5.0,
       features: ["100% natural Cream", "Rich in Vitamin D"],
-      Description: "Premium kiwi cream, perfect for skincare and welness."
-
-
+      description: "Premium kiwi cream, perfect for skincare and wellness."
     }
-
   ];
+
+  const [page, setPage] = useState(1);
+  const productsPerPage = page === 1 ? 3 : 1;
+  const pageCount = products.length > 3 ? 1 + (products.length - 3) : 1;
+  let paginatedProducts;
+  if (page === 1) {
+    paginatedProducts = products.slice(0, 3);
+  } else {
+    paginatedProducts = [products[page + 1]];
+    // page 2 shows products[3], page 3 shows products[4], etc.
+    // page index: 2 => products[3], 3 => products[4]
+    // products[page + 1] because page 2 => index 3
+  }
+
+  const handlePageChange = (newPage: number) => {
+    if (newPage >= 1 && newPage <= pageCount) setPage(newPage);
+  };
 
   const benefits = [
     {
@@ -89,58 +111,88 @@ const Products = () => {
           </p>
         </div>
 
-        {/* Products Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 stagger-animation">
-          {products.map((product, index) => (
-            <Card key={index} className="border-0 bg-gradient-card hover-lift overflow-hidden">
-              <div className="relative">
-                <img 
-                  src={product.image} 
-                  alt={product.name}
-                  className="w-full h-48 object-cover hover-scale"
+        {/* Products Pagination */}
+        <div className="flex flex-col items-center mb-20">
+          <div className="w-full overflow-x-auto">
+            <div className="flex flex-row gap-8 justify-center md:justify-start">
+              {paginatedProducts.map((product, index) => (
+                <Card key={index} className="min-w-[320px] max-w-xs border-0 bg-gradient-card hover-lift overflow-hidden mb-8 flex-shrink-0">
+                  <div className="relative">
+                    <img 
+                      src={product.image} 
+                      alt={product.name}
+                      className="w-full h-48 object-contain hover-scale bg-white"
+                      style={{ maxHeight: '200px', objectFit: 'contain' }}
+                    />
+                    <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
+                      Best Seller
+                    </div>
+                  </div>
+                  <CardHeader className="pb-4">
+                    <div className="flex justify-between items-start mb-2">
+                      <CardTitle className="text-xl text-primary">{product.name}</CardTitle>
+                      <div className="flex items-center space-x-1">
+                        <Star className="w-4 h-4 fill-accent text-accent" />
+                        <span className="text-sm font-medium text-accent">{product.rating}</span>
+                      </div>
+                    </div>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{product.description}</p>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {product.features.map((feature, featureIndex) => (
+                        <span 
+                          key={featureIndex}
+                          className="bg-accent/20 text-accent px-2 py-1 rounded-full text-xs font-medium"
+                        >
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex items-center justify-between mb-6">
+                      <div>
+                        <span className="text-2xl font-bold text-primary">{product.price}</span>
+                        <span className="text-muted-foreground ml-1">{product.unit}</span>
+                      </div>
+                    </div>
+                    <Button variant="hero" className="w-full group hover-lift">
+                      <ShoppingCart className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
+                      Add to Cart
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+          <Pagination className="mt-2">
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  href="#"
+                  onClick={e => { e.preventDefault(); handlePageChange(page - 1); }}
+                  aria-disabled={page === 1}
                 />
-                <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
-                  Best Seller
-                </div>
-              </div>
-              
-              <CardHeader className="pb-4">
-                <div className="flex justify-between items-start mb-2">
-                  <CardTitle className="text-xl text-primary">{product.name}</CardTitle>
-                  <div className="flex items-center space-x-1">
-                    <Star className="w-4 h-4 fill-accent text-accent" />
-                    <span className="text-sm font-medium text-accent">{product.rating}</span>
-                  </div>
-                </div>
-                <p className="text-muted-foreground text-sm leading-relaxed">{product.description}</p>
-              </CardHeader>
-
-              <CardContent className="pt-0">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {product.features.map((feature, featureIndex) => (
-                    <span 
-                      key={featureIndex}
-                      className="bg-accent/20 text-accent px-2 py-1 rounded-full text-xs font-medium"
-                    >
-                      {feature}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex items-center justify-between mb-6">
-                  <div>
-                    <span className="text-2xl font-bold text-primary">{product.price}</span>
-                    <span className="text-muted-foreground ml-1">{product.unit}</span>
-                  </div>
-                </div>
-
-                <Button variant="hero" className="w-full group hover-lift">
-                  <ShoppingCart className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
-                  Add to Cart
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+              </PaginationItem>
+              {Array.from({ length: pageCount }).map((_, i) => (
+                <PaginationItem key={i}>
+                  <PaginationLink
+                    href="#"
+                    isActive={page === i + 1}
+                    onClick={e => { e.preventDefault(); handlePageChange(i + 1); }}
+                  >
+                    {i + 1}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
+              <PaginationItem>
+                <PaginationNext
+                  href="#"
+                  onClick={e => { e.preventDefault(); handlePageChange(page + 1); }}
+                  aria-disabled={page === pageCount}
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
         </div>
 
         {/* Health Benefits Section */}
@@ -153,7 +205,6 @@ const Products = () => {
               Our organic kiwis aren't just delicious – they're packed with nutrients that support your health and wellbeing.
             </p>
           </div>
-
           <div className="grid md:grid-cols-3 gap-8 stagger-animation">
             {benefits.map((benefit, index) => (
               <div key={index} className="text-center hover-scale">
@@ -165,7 +216,6 @@ const Products = () => {
               </div>
             ))}
           </div>
-
           <div className="text-center mt-12">
             <Button variant="organic" size="lg" className="hover-lift">
               Learn More About Nutrition

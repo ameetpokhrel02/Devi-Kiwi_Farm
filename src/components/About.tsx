@@ -49,7 +49,7 @@ const About = () => {
               Our Story of Sustainable Excellence
             </h3>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Founded in 1985 by the Thompson family, KiwiVale Farm began as a small organic orchard with a simple mission: to grow the world's best kiwis while caring for the land that sustains us.
+              Founded in 2070 by the Devi Pokhrel, KiwiVale Farm began as a small organic orchard with a simple mission: to grow the world's best kiwis while caring for the land that sustains us.
             </p>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
               Today, our 200-acre certified organic farm produces over 500 tons of premium kiwis annually, all while maintaining the highest standards of environmental stewardship and sustainable agriculture.
