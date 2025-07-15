@@ -16,8 +16,7 @@ const navLinks = [
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [active, setActive] = useState<string>("#home");
-  const [showLogin, setShowLogin] = useState(false);
-  const [showSignup, setShowSignup] = useState(false);
+  const [showAuth, setShowAuth] = useState<'login' | 'signup' | null>(null);
 
   // Smooth scroll and active state on click
   const handleNavClick = (href: string) => (e: React.MouseEvent) => {
@@ -51,37 +50,15 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Social login buttons for signup modal
-  const SocialButtons = () => (
-    <div className="flex flex-col gap-2 mt-4">
-      <Button variant="outline" className="w-full flex items-center gap-2 justify-center">
-        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="w-5 h-5" /> Continue with Google
-      </Button>
-      <Button variant="outline" className="w-full flex items-center gap-2 justify-center">
-        <Facebook className="w-5 h-5 text-blue-600" /> Continue with Facebook
-      </Button>
-      <Button variant="outline" className="w-full flex items-center gap-2 justify-center">
-        <Github className="w-5 h-5" /> Continue with GitHub
-      </Button>
-    </div>
-  );
+  // Split modal logic
+  const handleSwitch = (view: 'login' | 'signup') => setShowAuth(view);
 
-  // Enhanced Signup modal with social and switch to login
-  const SignupModal = () => (
-    <div>
-      <Signup asModal onClose={() => setShowSignup(false)} />
-      <div className="fixed inset-0 z-50 flex justify-center items-start pointer-events-none">
-        <div className="w-full max-w-md mx-auto pointer-events-auto">
-          <SocialButtons />
-          <div className="text-center mt-4">
-            <span className="text-sm text-muted-foreground">Already have an account? </span>
-            <button className="text-primary font-semibold hover:underline ml-1" onClick={() => { setShowSignup(false); setShowLogin(true); }}>
-              <LogIn className="inline w-4 h-4 mr-1" /> Login
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+  const AuthModal = () => (
+    showAuth === 'login' ? (
+      <Login asModal onClose={() => setShowAuth(null)} onSwitchToSignup={() => handleSwitch('signup')} />
+    ) : showAuth === 'signup' ? (
+      <Login asModal onClose={() => setShowAuth(null)} onSwitchToSignup={() => handleSwitch('login')} />
+    ) : null
   );
 
   return (
@@ -116,7 +93,7 @@ const Navbar: React.FC = () => {
             })}
           </nav>
 
-          {/* CTA & Auth Buttons */}
+          {/* CTA Button */}
           <div className="hidden md:flex items-center gap-2">
             <Button variant="hero" className="hover-lift ml-2">
               Order Fresh Kiwis
@@ -163,17 +140,16 @@ const Navbar: React.FC = () => {
           </nav>
         </div>
       </div>
-      {/* Auth Modals */}
-      {showLogin && <Login asModal onClose={() => setShowLogin(false)} />}
-      {showSignup && <SignupModal />}
       {/* Floating Sign Up Button */}
       <button
         className="fixed z-50 bottom-6 right-6 bg-primary text-primary-foreground rounded-full shadow-lg p-4 flex items-center justify-center hover:bg-primary/90 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50"
-        onClick={() => setShowSignup(true)}
+        onClick={() => setShowAuth('signup')}
         aria-label="Sign Up"
       >
         <UserPlus className="w-7 h-7" />
       </button>
+      {/* Auth Modal (split login/signup) */}
+      {showAuth && <AuthModal />}
     </header>
   );
 };
