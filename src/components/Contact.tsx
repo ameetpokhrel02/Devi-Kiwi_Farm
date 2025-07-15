@@ -24,18 +24,23 @@ const Contact: React.FC = () => {
         <p className="text-lg text-muted-foreground mb-10 text-center">
           Have a question or want to get in touch? Fill out the form below and we’ll get back to you soon!
         </p>
-        <div className="flex flex-col md:flex-row gap-12 items-center justify-center max-w-4xl mx-auto">
+        <div className="flex flex-col md:flex-row gap-12 items-stretch justify-center max-w-4xl mx-auto">
           {/* Founder Info & Image */}
-          <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
-            <img src={parentsImg} alt="Founders Devi Pokhrel and Tila Pokhrel" className="w-48 h-auto rounded-xl shadow mb-4" />
+          <div className="flex-1 flex flex-col justify-center items-center md:items-start text-center md:text-left bg-white rounded-2xl shadow-lg p-8 min-h-full">
+            <img 
+              src={parentsImg} 
+              alt="Founders Devi Pokhrel and Tila Pokhrel" 
+              className="w-full max-w-xs md:max-w-full md:w-auto h-56 md:h-[320px] object-cover rounded-xl shadow mb-6 mx-auto md:mx-0" 
+              style={{ aspectRatio: '4/3' }}
+            />
             <h3 className="text-2xl font-bold text-primary mb-2">Devi Pokhrel & Tila Pokhrel</h3>
             <p className="text-muted-foreground mb-2">Founders of Devi Kiwi Farm</p>
-            <p className="text-base text-muted-foreground max-w-xs">
+            <p className="text-base text-muted-foreground max-w-xs md:max-w-none">
               With a passion for sustainable farming and a love for the land, Devi and Tila Pokhrel have nurtured Devi Kiwi Farm from the ground up, bringing the freshest kiwis from Nepal's Tehrathum, Solma to your table.
             </p>
           </div>
           {/* Contact Form */}
-          <form onSubmit={handleSubmit} className="flex-1 bg-white rounded-2xl shadow-lg p-8 space-y-6 w-full max-w-md">
+          <form onSubmit={handleSubmit} className="flex-1 bg-white rounded-2xl shadow-lg p-8 space-y-6 w-full max-w-md flex flex-col justify-center min-h-full">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-primary mb-2">Name</label>
               <input
