@@ -21,7 +21,7 @@ const CartPage: React.FC = () => {
         <ul>
           {cart.map((item) => (
             <li key={item.id} className="flex items-center mb-4 border-b pb-4">
-              <img src={item.image} alt={item.name} className="w-20 h-20 object-cover rounded mr-4" />
+              <img src={item.images[0]} alt={item.name} className="w-20 h-20 object-cover rounded mr-4" />
               <div className="flex-1">
                 <h2 className="text-lg font-semibold">{item.name}</h2>
                 <p className="text-gray-600">Rs. {item.price}</p>
