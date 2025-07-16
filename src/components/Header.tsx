@@ -22,7 +22,7 @@ const Header = () => {
             <div className="w-10 h-10 bg-gradient-primary rounded-full flex items-center justify-center">
               <Leaf className="w-6 h-6 text-primary-foreground" />
             </div>
-            <span className="text-xl font-bold text-gradient">KiwiVale Farm</span>
+            <span className="text-xl font-bold text-gradient">Devi Kiwi Farm</span>
           </div>
 
           {/* Desktop Navigation */}
