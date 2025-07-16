@@ -1,11 +1,13 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { products } from '../data/products';
+import { useCart } from '../components/CartContext';
 
 const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const product = products.find((p) => p.id === id);
+  const { addToCart } = useCart();
 
   if (!product) {
     return <div className="p-8 text-center text-red-500">Product not found.</div>;
@@ -30,7 +32,10 @@ const ProductDetails: React.FC = () => {
         <span className="text-green-600 font-bold text-xl mb-4">Rs. {product.price}</span>
         <button
           className="bg-green-500 text-white px-6 py-2 rounded mt-4 hover:bg-green-600 transition"
-          onClick={() => {/* TODO: Add to cart logic */}}
+          onClick={() => {
+            addToCart(product);
+            alert('Added to cart!');
+          }}
         >
           Add to Cart
         </button>

@@ -5,6 +5,7 @@ import Login from "@/components/Login";
 import Signup from "@/components/Signup";
 import parentsImg from "@/assets/patrents .png";
 import { Link, useNavigate } from "react-router-dom";
+import { useCart } from './CartContext';
 
 const navLinks = [
   { label: 'Home', href: '#home', icon: Home },
@@ -19,6 +20,7 @@ const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [active, setActive] = useState<string>("#home");
   const [showAuth, setShowAuth] = useState<'login' | 'signup' | null>(null);
+  const { cart } = useCart();
 
   // Smooth scroll and active state on click
   const handleNavClick = (href: string) => (e: React.MouseEvent) => {
@@ -112,7 +114,11 @@ const Navbar: React.FC = () => {
             })}
             <Link to="/cart" className="relative ml-2">
               <ShoppingBag className="w-6 h-6 text-primary" />
-              {/* TODO: Show cart item count badge */}
+              {cart.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2 py-0.5">
+                  {cart.reduce((sum, item) => sum + item.quantity, 0)}
+                </span>
+              )}
             </Link>
             {/* Parents image beside Contact */}
             <img src={parentsImg} alt="Parents" className="h-8 w-auto ml-2" />
