@@ -110,6 +110,10 @@ const Navbar: React.FC = () => {
                 </a>
               );
             })}
+            <Link to="/cart" className="relative ml-2">
+              <ShoppingBag className="w-6 h-6 text-primary" />
+              {/* TODO: Show cart item count badge */}
+            </Link>
             {/* Parents image beside Contact */}
             <img src={parentsImg} alt="Parents" className="h-8 w-auto ml-2" />
             {/* Auth Icon beside Contact */}

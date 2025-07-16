@@ -28,7 +28,12 @@ const ProductDetails: React.FC = () => {
         <h2 className="text-2xl font-bold mb-2">{product.name}</h2>
         <p className="text-gray-600 mb-4">{product.description}</p>
         <span className="text-green-600 font-bold text-xl mb-4">Rs. {product.price}</span>
-        {/* Add to Cart button will go here later */}
+        <button
+          className="bg-green-500 text-white px-6 py-2 rounded mt-4 hover:bg-green-600 transition"
+          onClick={() => {/* TODO: Add to cart logic */}}
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   );
