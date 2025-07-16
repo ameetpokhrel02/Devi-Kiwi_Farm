@@ -3,7 +3,6 @@ import { Leaf, Home, User, ShoppingBag, Image as ImageIcon, Mail, Menu, X, UserP
 import { Button } from "@/components/ui/button";
 import Login from "@/components/Login";
 import Signup from "@/components/Signup";
-import parentsImg from "@/assets/patrents .png";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from './CartContext';
 
@@ -161,8 +160,6 @@ const Navbar: React.FC = () => {
                 </span>
               )}
             </Link>
-            {/* Parents image beside Contact */}
-            <img src={parentsImg} alt="Parents" className="h-8 w-auto ml-2" />
             {/* Auth Icon beside Contact */}
             <button
               className="ml-2 p-0 bg-transparent border-none hover:text-primary focus:outline-none"
