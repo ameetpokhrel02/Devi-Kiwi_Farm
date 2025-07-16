@@ -43,7 +43,7 @@ const Products = () => {
       name: "Organic Green Kiwis",
       price: "$6.99",
       unit: "per lb",
-      image: kiwiImage,
+      image: kiwiOilImage,
       rating: 4.8,
       features: ["Classic Taste", "Rich Fiber", "Antioxidant Rich"],
       description: "Traditional green kiwis with the perfect balance of sweet and tart."
