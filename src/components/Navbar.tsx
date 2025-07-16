@@ -12,9 +12,37 @@ const navLinks = [
   { label: 'Products', href: '/products', icon: ShoppingBag },
   { label: 'About', href: '#about', icon: User },
   { label: 'Our Kiwis', href: '#kiwis', icon: Leaf },
-  { label: 'Gallery', href: '#gallery', icon: ImageIcon },
   { label: 'Contact', href: '#contact', icon: Mail },
 ];
+
+const scrollOrNavigate = (href: string, navigate: any) => (e: React.MouseEvent) => {
+  if (href === '/products') {
+    navigate('/products');
+    return;
+  }
+  if (href === '/' || href === '#home') {
+    e.preventDefault();
+    navigate('/');
+    setTimeout(() => {
+      const section = document.querySelector('#home');
+      if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+    return;
+  }
+  if (href.startsWith('#')) {
+    e.preventDefault();
+    if (window.location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const section = document.querySelector(href);
+        if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    } else {
+      const section = document.querySelector(href);
+      if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+};
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -96,25 +124,26 @@ const Navbar: React.FC = () => {
           <nav className="hidden md:flex space-x-6 items-center">
             {navLinks.map((link) => {
               const Icon = link.icon;
-              if (link.href.startsWith("/")) {
+              if (link.href === '/products') {
                 return (
-                  <Link
+                  <a
                     key={link.href}
-                    to={link.href}
+                    href={link.href}
+                    onClick={scrollOrNavigate(link.href, navigate)}
                     className={`flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-300 font-medium relative group ${active === link.href ? 'bg-primary/10 text-primary shadow hover:bg-primary/20' : 'text-foreground hover:text-primary hover:bg-primary/5'} animate-fade-in`}
                     style={{ minWidth: 80 }}
                   >
                     <Icon className={`w-5 h-5 ${active === link.href ? 'text-primary' : 'text-muted-foreground'} transition-colors duration-300`} />
                     <span className={`transition-colors duration-300 ${active === link.href ? 'text-primary' : ''}`}>{link.label}</span>
                     <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${active === link.href ? 'w-full' : 'w-0'} group-hover:w-full`}></span>
-                  </Link>
+                  </a>
                 );
               }
               return (
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={handleNavClick(link.href)}
+                  onClick={scrollOrNavigate(link.href, navigate)}
                   className={`flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-300 font-medium relative group ${active === link.href ? 'bg-primary/10 text-primary shadow hover:bg-primary/20' : 'text-foreground hover:text-primary hover:bg-primary/5'} animate-fade-in`}
                   style={{ minWidth: 80 }}
                 >
@@ -174,23 +203,11 @@ const Navbar: React.FC = () => {
           <nav className="flex flex-col space-y-2 p-4">
             {navLinks.map((link) => {
               const Icon = link.icon;
-              if (link.href.startsWith("/")) {
-                return (
-                  <Link
-                    key={link.href}
-                    to={link.href}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 font-medium relative group ${active === link.href ? 'bg-primary/10 text-primary shadow hover:bg-primary/20' : 'text-foreground hover:text-primary hover:bg-primary/5'} animate-fade-in`}
-                  >
-                    <Icon className={`w-5 h-5 ${active === link.href ? 'text-primary' : 'text-muted-foreground'} transition-colors duration-300`} />
-                    <span className={`transition-colors duration-300 ${active === link.href ? 'text-primary' : ''}`}>{link.label}</span>
-                  </Link>
-                );
-              }
               return (
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={handleNavClick(link.href)}
+                  onClick={scrollOrNavigate(link.href, navigate)}
                   className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 font-medium relative group ${active === link.href ? 'bg-primary/10 text-primary shadow hover:bg-primary/20' : 'text-foreground hover:text-primary hover:bg-primary/5'} animate-fade-in`}
                 >
                   <Icon className={`w-5 h-5 ${active === link.href ? 'text-primary' : 'text-muted-foreground'} transition-colors duration-300`} />

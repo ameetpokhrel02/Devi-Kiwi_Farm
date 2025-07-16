@@ -7,7 +7,7 @@ import khaltiLogo from '../assets/khalti.png';
 import imepayLogo from '../assets/IME-Pay-Logo.png';
 import sanimaLogo from '../assets/sanimabank.jpeg';
 import globalimeLogo from '../assets/globalime.png';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const quickLinks = [
   { name: "Home", href: "/" },
@@ -37,6 +37,37 @@ const socialLinks = [
 
 const Footer = () => {
   const location = typeof window !== 'undefined' ? window.location : { pathname: '/' };
+  const navigate = useNavigate();
+
+  const scrollOrNavigate = (href: string) => (e: React.MouseEvent) => {
+    if (href === '/products') {
+      navigate('/products');
+      return;
+    }
+    if (href === '/' || href === '#home') {
+      e.preventDefault();
+      navigate('/');
+      setTimeout(() => {
+        const section = document.querySelector('#home');
+        if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+      return;
+    }
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      if (window.location.pathname !== '/') {
+        navigate('/');
+        setTimeout(() => {
+          const section = document.querySelector(href);
+          if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+      } else {
+        const section = document.querySelector(href);
+        if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
+
   return (
     <footer className="bg-earth-brown text-warm-cream">
       {/* Newsletter Section */}
@@ -99,21 +130,13 @@ const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  {link.href.startsWith('/') ? (
-                    <Link
-                      to={link.href}
-                      className="opacity-80 hover:opacity-100 hover:text-accent transition-all duration-300 hover:translate-x-1 inline-block"
-                    >
-                      {link.name}
-                    </Link>
-                  ) : (
-                    <a
-                      href={link.href}
-                      className="opacity-80 hover:opacity-100 hover:text-accent transition-all duration-300 hover:translate-x-1 inline-block"
-                    >
-                      {link.name}
-                    </a>
-                  )}
+                  <a
+                    href={link.href}
+                    onClick={scrollOrNavigate(link.href)}
+                    className="opacity-80 hover:opacity-100 hover:text-accent transition-all duration-300 hover:translate-x-1 inline-block"
+                  >
+                    {link.name}
+                  </a>
                 </li>
               ))}
             </ul>
