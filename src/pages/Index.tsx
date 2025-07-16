@@ -8,6 +8,8 @@ import Footer from "@/components/Footer";
 import OurServices from "@/components/OurServices";
 import Blog from "@/components/Blog";
 import { useNavigate } from "react-router-dom";
+import buffaloFarmer from "@/assets/buffalo-farmer-cultivating-agriculture.jpg";
+import { ArrowLeft, ArrowRight, Play } from "lucide-react";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -21,7 +23,7 @@ const Index = () => {
         <Sustainability />
         <OurServices />
         <Contact />
-        {/* Blog Preview Section */}
+        {/* Blog Preview Section (Restored Simple Version) */}
         <section id="blog-preview" className="py-16 bg-gradient-to-br from-green-50 to-green-100">
           <div className="container mx-auto px-4 text-center animate-fade-in">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gradient">🌿 The Inspiring Story of Devi Kiwi Farm</h2>

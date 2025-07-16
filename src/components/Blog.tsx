@@ -1,26 +1,35 @@
 import React from 'react';
 import parentsImg from '../assets/dadmom.jpg';
+import buffaloFarmer from '../assets/buffalo-farmer-cultivating-agriculture.jpg';
 
 const Blog: React.FC = () => {
   return (
-    <section id="blog" className="py-20 bg-gradient-to-br from-green-50 to-green-100">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">🌿 The Inspiring Story of Devi Kiwi Farm</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Organic Growth Rooted in Hard Work<br/>
-            <span className="text-lg text-primary font-semibold">By Amit Pokhrel</span>
-          </p>
+    <section id="blog" className="bg-gradient-to-br from-green-50 to-green-100">
+      {/* Hero Section */}
+      <div className="relative w-full h-[340px] md:h-[420px] flex items-center justify-center mb-12">
+        <img
+          src={buffaloFarmer}
+          alt="Buffalo Farmer Hero"
+          className="absolute inset-0 w-full h-full object-cover object-center z-0"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-green-900/70 via-green-700/60 to-green-500/40 z-10" />
+        <div className="relative z-20 flex flex-col items-center justify-center w-full h-full text-center px-4">
+          <h1 className="text-4xl md:text-6xl font-bold text-white drop-shadow-lg mb-4 animate-fade-in">🌿 The Inspiring Story of Devi Kiwi Farm</h1>
+          <p className="text-xl md:text-2xl text-white/90 font-medium max-w-2xl mx-auto animate-fade-in" style={{animationDelay: '0.2s'}}>Organic Growth Rooted in Hard Work</p>
+          <span className="mt-4 text-lg text-green-100 font-semibold animate-fade-in" style={{animationDelay: '0.4s'}}>By Amit Pokhrel</span>
         </div>
-        <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl p-8 md:p-12 flex flex-col md:flex-row gap-10 items-center hover:shadow-2xl transition-shadow duration-500 animate-slide-up group">
-          <div className="flex-shrink-0 w-full md:w-1/3 flex justify-center">
+      </div>
+      {/* Article Section */}
+      <div className="container mx-auto px-4">
+        <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl p-8 md:p-12 flex flex-col md:flex-row gap-10 items-center md:items-stretch hover:shadow-2xl transition-shadow duration-500 animate-slide-up group">
+          <div className="flex-shrink-0 w-full md:w-1/2 flex justify-center items-center">
             <img 
               src={parentsImg} 
               alt="Devi and Tila Pokhrel" 
-              className="rounded-2xl shadow-lg w-72 h-72 object-cover group-hover:scale-105 transition-transform duration-500 border-4 border-green-200" 
+              className="rounded-2xl shadow-lg w-full max-w-xs h-72 object-cover group-hover:scale-105 transition-transform duration-500 border-4 border-green-200" 
             />
           </div>
-          <article className="flex-1 text-lg text-gray-800 space-y-6">
+          <article className="flex-1 text-lg text-gray-800 space-y-6 flex flex-col justify-center">
             <p>Located in the beautiful hills of eastern Nepal, Devi Kiwi Farm is a shining example of what dedication, family support, and sustainable farming can achieve. Established in 2072 B.S., the farm is led by Mr. Devi Pokhrel, a passionate and experienced farmer, along with his supportive wife, Mrs. Tila Pokhrel. Their farm has become a model for organic fruit cultivation and rural entrepreneurship in the Tehrathum District.</p>
             <h3 className="text-2xl font-bold text-green-700 mt-6 mb-2">🌱 Meet the Founders: Mr. Devi Pokhrel & Mrs. Tila Pokhrel</h3>
             <p>With over 10 years of experience in kiwi farming, Mr. Devi Pokhrel is not just a farmer but also a leader in the agricultural community. As the Chairman of the Tehrathum District Kiwi Organization, he has trained over 100 farmers each year, helping them begin their own kiwi farming journey.</p>
