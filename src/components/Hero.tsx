@@ -2,9 +2,35 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Star, Users, Award } from "lucide-react";
 import heroImage from "@/assets/kiwi-farm-hero.jpg";
 import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+
+const useCountUp = (end: number, duration = 800, suffix = '', isFloat = false) => {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    let start = 0;
+    const increment = isFloat ? 0.1 : 1;
+    const totalSteps = Math.ceil((end - start) / increment);
+    const stepTime = duration / totalSteps;
+    let current = start;
+    const timer = setInterval(() => {
+      current += increment;
+      if ((isFloat && current >= end) || (!isFloat && current >= end)) {
+        setCount(end);
+        clearInterval(timer);
+      } else {
+        setCount(isFloat ? parseFloat(current.toFixed(1)) : Math.floor(current));
+      }
+    }, stepTime);
+    return () => clearInterval(timer);
+  }, [end, duration, isFloat]);
+  return `${count}${suffix}`;
+};
 
 const Hero = () => {
   const navigate = useNavigate();
+  const rating = useCountUp(4.9, 800, '', true);
+  const customers = useCountUp(10000, 800, 'K+');
+  const years = useCountUp(38, 800);
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -56,21 +82,21 @@ const Hero = () => {
             <div className="text-center">
               <div className="flex items-center justify-center mb-2">
                 <Star className="w-6 h-6 text-accent mr-2" />
-                <span className="text-2xl md:text-3xl font-bold text-primary">4.9</span>
+                <span className="text-2xl md:text-3xl font-bold text-primary">{rating}</span>
               </div>
               <p className="text-sm text-muted-foreground">Customer Rating</p>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center mb-2">
                 <Users className="w-6 h-6 text-accent mr-2" />
-                <span className="text-2xl md:text-3xl font-bold text-primary">10K+</span>
+                <span className="text-2xl md:text-3xl font-bold text-primary">{customers}</span>
               </div>
               <p className="text-sm text-muted-foreground">Happy Customers</p>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center mb-2">
                 <Award className="w-6 h-6 text-accent mr-2" />
-                <span className="text-2xl md:text-3xl font-bold text-primary">38</span>
+                <span className="text-2xl md:text-3xl font-bold text-primary">{years}</span>
               </div>
               <p className="text-sm text-muted-foreground">Years Experience</p>
             </div>

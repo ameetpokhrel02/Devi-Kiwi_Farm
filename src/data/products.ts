@@ -14,6 +14,21 @@ import kiwiJuice from '../assets/kiwi juice.png';
 import kiwi11 from '../assets/kiwi 11.jpg';
 import kiwi12 from '../assets/kiwi 12.jpg';
 import kiwi13 from '../assets/kiwi 13.jpg';
+import kiwi14 from '../assets/kiwi 14.jpg';
+import kiwi15 from '../assets/kiwi15.jpg';
+import kiwi18 from '../assets/kiwi 18.jpg';
+import kiwiPickle from '../assets/kiwiw pickle.jpg';
+import kiwiCream from '../assets/kiwi-cream.png';
+import kiwi19 from '../assets/kiwi 19.jpg';
+import kiwi20 from '../assets/kiwi 20.jpg';
+import kiwi21 from '../assets/kiwi 21.webp';
+import kiwiFruitCrush from '../assets/kiwi-fruit-crush-mapro-1.webp';
+import kiwi22 from '../assets/kiwi 22.jpeg';
+import kowi12 from '../assets/kowi 12.jpg';
+import kiwiFarmHero from '../assets/kiwi-farm-hero.jpg';
+import kiwiCutting from '../assets/Kiwi cutting.webp';
+import kiwiFruits from '../assets/kiwi-fruits.jpg';
+import kiwiIol from '../assets/kiwi-iol.png';
 
 export interface Product {
   id: string;
@@ -81,5 +96,61 @@ export const products: Product[] = [
       'Boosts energy',
     ],
     colors: ['#AED581', '#FFD700', '#FF5722', '#F44336'],
+  },
+  {
+    id: '5',
+    name: 'Kiwi Pickle',
+    price: 200,
+    images: [kiwiPickle, kiwi14, kiwi15, kiwi18],
+    description: 'Tangy and spicy kiwi pickle, a unique twist on traditional flavors.',
+    benefits: [
+      'Aids digestion',
+      'Unique taste',
+      'No artificial preservatives',
+      'Handcrafted in small batches',
+    ],
+    colors: ['#A5D6A7', '#FFD700', '#FF5722', '#F44336'],
+  },
+  {
+    id: '6',
+    name: 'Kiwi Cream',
+    price: 300,
+    images: [kiwiCream, kiwi19, kiwi20, kiwi21],
+    description: 'Smooth and luscious kiwi cream, perfect for desserts and spreads.',
+    benefits: [
+      'Rich and creamy texture',
+      'Natural kiwi flavor',
+      'Versatile use',
+      'No added sugar',
+    ],
+    colors: ['#C8E6C9', '#FFD700', '#FF5722', '#F44336'],
+  },
+  {
+    id: '7',
+    name: 'Kiwi Fruit Crush',
+    price: 220,
+    images: [kiwiFruitCrush, kiwi22, kowi12, kiwiFarmHero],
+    description: 'Kiwi fruit crush, ideal for drinks, desserts, and toppings.',
+    benefits: [
+      'Easy to use in recipes',
+      'Intense kiwi flavor',
+      'No artificial colors',
+      'Great for summer drinks',
+    ],
+    colors: ['#B2DFDB', '#FFD700', '#FF5722', '#F44336'],
+  },
+  {
+    id: '8',
+    name: 'Kiwi Cutting',
+    price: 60,
+    images: [kiwiCutting, kiwiFruits, kiwiIol, kiwiFarmHero],
+    description: 'Freshly cut kiwi pieces, ready to eat or use in salads.',
+    benefits: [
+      'Convenient and ready to eat',
+      'Perfect for salads',
+      'Rich in nutrients',
+      'No added sugar',
+    ],
+    colors: ['#DCEDC8', '#FFD700', '#FF5722', '#F44336'],
   },
 ]; 
