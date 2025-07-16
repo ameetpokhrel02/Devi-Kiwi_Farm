@@ -6,6 +6,9 @@ import kiwiImage from "@/assets/kiwi-fruits.jpg";
 import kiwiOilImage from "@/assets/kiwi-iol.png";
 import kiwiCreamImage from "@/assets/kiwi-cream.png";
 import KiwiImages1 from "@/assets/kiwi 22.jpeg";
+import KiwiImages2 from "@/assets/kiwi 12.jpg";
+import KiwiImagesPickle from "@/assets/kiwiw pickle.jpg"
+import KiwiImagesJuice from "@/assets/kiwi juice.png"
 import {
   Pagination,
   PaginationContent,
@@ -14,6 +17,7 @@ import {
   PaginationPrevious,
   PaginationNext,
 } from "@/components/ui/pagination";
+import { Description } from "@radix-ui/react-toast";
 
 const Products = () => {
   const products = [
@@ -21,10 +25,19 @@ const Products = () => {
       name: "Premium Gold Kiwis",
       price: "$8.99",
       unit: "per lb",
-      image: kiwiImage,
+      image: KiwiImagesJuice,
       rating: 4.9,
       features: ["Extra Sweet", "Large Size", "High Vitamin C"],
       description: "Our signature golden kiwis with exceptional sweetness and smooth skin."
+    },
+    {
+      name: "Green Kiwi",
+      price: "$4.45",
+      unit: "per kg",
+      image: KiwiImages2,
+      rating: 4.5,
+      features: ["High Vitamin C", "Medium Size", "Extra Sweet"],
+      description: "Our signature Green Kiwi with expecetional sweetnewss and smooth skin."
     },
     {
       name: "Organic Green Kiwis",
@@ -39,7 +52,7 @@ const Products = () => {
       name: "Mini Kiwi Mix",
       price: "$12.99",
       unit: "per 2lbs",
-      image: kiwiImage,
+      image: KiwiImagesPickle,
       rating: 4.9,
       features: ["Bite-Sized", "No Peeling", "Super Sweet"],
       description: "Adorable mini kiwis that you can eat whole - skin and all!"
