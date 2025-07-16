@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Star, Users, Award } from "lucide-react";
 import heroImage from "@/assets/kiwi-farm-hero.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -40,7 +42,7 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-slide-up" style={{ animationDelay: "0.4s" }}>
-            <Button variant="hero" size="lg" className="group hover-lift">
+            <Button variant="hero" size="lg" className="group hover-lift" onClick={() => navigate('/products')}>
               Shop Fresh Kiwis
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </Button>
