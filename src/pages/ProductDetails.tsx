@@ -23,7 +23,7 @@ const ProductDetails: React.FC = () => {
       </button>
       <div className="bg-white rounded-lg shadow-md p-6 flex flex-col items-center">
         <img
-          src={product.image}
+          src={product.images[0]}
           alt={product.name}
           className="w-64 h-64 object-cover rounded mb-6"
         />
