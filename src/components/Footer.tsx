@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Leaf, Mail, Phone, MapPin, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import AppDownloadCard from "./AppDownloadCard";
 
 const quickLinks = [
   { name: "About Us", href: "#about" },
@@ -55,7 +56,7 @@ const Footer = () => {
 
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-16">
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-5 md:grid-cols-2 gap-12">
           {/* Company Info */}
           <div className="lg:col-span-1 animate-slide-up">
             <div className="flex items-center space-x-2 mb-6">
@@ -155,6 +156,11 @@ const Footer = () => {
                 ))}
               </div>
             </div>
+          </div>
+
+          {/* App Download Card */}
+          <div className="animate-slide-up flex items-center justify-center" style={{ animationDelay: '0.4s' }}>
+            <AppDownloadCard />
           </div>
         </div>
       </div>
