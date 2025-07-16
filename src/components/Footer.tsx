@@ -16,7 +16,8 @@ const quickLinks = [
   { name: "Sustainability", href: "#sustainability" },
   { name: "Farm Tours", href: "#tours" },
   { name: "Wholesale", href: "#wholesale" },
-  { name: "Contact", href: "#contact" }
+  { name: "Contact", href: "#contact" },
+  { name: "Blog", href: "/blog" },
 ];
 
 const customerService = [

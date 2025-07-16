@@ -12,6 +12,7 @@ const navLinks = [
   { label: 'About', href: '#about', icon: User },
   { label: 'Our Kiwis', href: '#kiwis', icon: Leaf },
   { label: 'Contact', href: '#contact', icon: Mail },
+  { label: 'Blog', href: '/blog', icon: LogIn },
 ];
 
 const scrollOrNavigate = (href: string, navigate: any) => (e: React.MouseEvent) => {

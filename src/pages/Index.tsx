@@ -10,6 +10,7 @@ import Blog from "@/components/Blog";
 import { useNavigate } from "react-router-dom";
 
 const Index = () => {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -29,7 +30,7 @@ const Index = () => {
             </p>
             <button
               className="bg-green-600 text-white px-8 py-3 rounded-lg shadow hover:bg-green-700 transition font-semibold text-lg hover:scale-105"
-              onClick={() => useNavigate()('/blog')}
+              onClick={() => navigate('/blog')}
             >
               Read Full Story
             </button>
