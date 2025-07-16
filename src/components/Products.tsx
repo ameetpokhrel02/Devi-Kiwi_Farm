@@ -5,6 +5,7 @@ import { Star, ShoppingCart, Leaf, Award, Zap } from "lucide-react";
 import kiwiImage from "@/assets/kiwi-fruits.jpg";
 import kiwiOilImage from "@/assets/kiwi-iol.png";
 import kiwiCreamImage from "@/assets/kiwi-cream.png";
+import KiwiImages1 from "@/assets/kiwi 22.jpeg";
 import {
   Pagination,
   PaginationContent,
