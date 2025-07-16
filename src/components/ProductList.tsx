@@ -72,7 +72,10 @@ const ProductList: React.FC = () => {
                 <div className="flex gap-4 items-center mt-4">
                   <button
                     className="bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 transition font-semibold text-base"
-                    onClick={() => addToCart(product)}
+                    onClick={() => {
+                      addToCart(product);
+                      alert('Added to cart!');
+                    }}
                   >
                     Add to Cart
                   </button>
@@ -143,7 +146,10 @@ const ProductList: React.FC = () => {
                 <div className="flex gap-4 items-center mt-4">
                   <button
                     className="bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 transition font-semibold text-base"
-                    onClick={() => addToCart(product)}
+                    onClick={() => {
+                      addToCart(product);
+                      alert('Added to cart!');
+                    }}
                   >
                     Add to Cart
                   </button>
