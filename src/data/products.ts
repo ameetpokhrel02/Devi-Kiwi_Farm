@@ -1,3 +1,20 @@
+import kiwi1 from '../assets/kiwi 1.jpg';
+import kiwi2 from '../assets/kiwi 2.jpg';
+import kiwi3 from '../assets/kiwi 3.jpg';
+import kiwi4 from '../assets/kiwi 4.jpg';
+import kwiwiJam from '../assets/kwiwi jam.webp';
+import kiwi5 from '../assets/kiwi 5.webp';
+import kiwi6 from '../assets/kiwi 6.jpeg';
+import kiwi7 from '../assets/kiwi 7.jpg';
+import driedKiwi from '../assets/dried kiwi.jpg';
+import kiwi8 from '../assets/kiwi 8.jpg';
+import kiwi9 from '../assets/kiwi 9.jpg';
+import kiwi10 from '../assets/kiwi 10.jpg';
+import kiwiJuice from '../assets/kiwi juice.png';
+import kiwi11 from '../assets/kiwi 11.jpg';
+import kiwi12 from '../assets/kiwi 12.jpg';
+import kiwi13 from '../assets/kiwi 13.jpg';
+
 export interface Product {
   id: string;
   name: string;
@@ -13,12 +30,7 @@ export const products: Product[] = [
     id: '1',
     name: 'Fresh Kiwi',
     price: 120,
-    images: [
-      '/kiwi-farm-bloom-landing-main/src/assets/kiwi 1.jpg',
-      '/kiwi-farm-bloom-landing-main/src/assets/kiwi 2.jpg',
-      '/kiwi-farm-bloom-landing-main/src/assets/kiwi 3.jpg',
-      '/kiwi-farm-bloom-landing-main/src/assets/kiwi 4.jpg',
-    ],
+    images: [kiwi1, kiwi2, kiwi3, kiwi4],
     description: 'Delicious, organic kiwis grown on our sustainable farm.',
     benefits: [
       'Rich in Vitamin C',
@@ -32,12 +44,7 @@ export const products: Product[] = [
     id: '2',
     name: 'Kiwi Jam',
     price: 250,
-    images: [
-      '/kiwi-farm-bloom-landing-main/src/assets/kwiwi jam.webp',
-      '/kiwi-farm-bloom-landing-main/src/assets/kiwi 5.webp',
-      '/kiwi-farm-bloom-landing-main/src/assets/kiwi 6.jpeg',
-      '/kiwi-farm-bloom-landing-main/src/assets/kiwi 7.jpg',
-    ],
+    images: [kwiwiJam, kiwi5, kiwi6, kiwi7],
     description: 'Homemade kiwi jam with a sweet and tangy flavor.',
     benefits: [
       'Made from fresh kiwis',
@@ -51,12 +58,7 @@ export const products: Product[] = [
     id: '3',
     name: 'Dried Kiwi Slices',
     price: 180,
-    images: [
-      '/kiwi-farm-bloom-landing-main/src/assets/dried kiwi.jpg',
-      '/kiwi-farm-bloom-landing-main/src/assets/kiwi 8.jpg',
-      '/kiwi-farm-bloom-landing-main/src/assets/kiwi 9.jpg',
-      '/kiwi-farm-bloom-landing-main/src/assets/kiwi 10.jpg',
-    ],
+    images: [driedKiwi, kiwi8, kiwi9, kiwi10],
     description: 'Healthy dried kiwi slices, perfect for snacking.',
     benefits: [
       'Great snack option',
@@ -70,12 +72,7 @@ export const products: Product[] = [
     id: '4',
     name: 'Kiwi Juice',
     price: 90,
-    images: [
-      '/kiwi-farm-bloom-landing-main/src/assets/kiwi juice.png',
-      '/kiwi-farm-bloom-landing-main/src/assets/kiwi 11.jpg',
-      '/kiwi-farm-bloom-landing-main/src/assets/kiwi 12.jpg',
-      '/kiwi-farm-bloom-landing-main/src/assets/kiwi 13.jpg',
-    ],
+    images: [kiwiJuice, kiwi11, kiwi12, kiwi13],
     description: 'Refreshing kiwi juice, packed with vitamins.',
     benefits: [
       'Hydrating and refreshing',
