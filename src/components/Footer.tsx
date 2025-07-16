@@ -32,7 +32,7 @@ const socialLinks = [
   { icon: Facebook, href: "#", label: "Facebook" },
   { icon: Instagram, href: "#", label: "Instagram" },
   { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Youtube, href: "#", label: "YouTube" }
+  { icon: Youtube, href: "https://youtu.be/fGW3_g8HIkk?si=reUk2_YeaiCLMZX1", label: "YouTube" }
 ];
 
 const Footer = () => {
