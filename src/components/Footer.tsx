@@ -2,6 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Leaf, Mail, Phone, MapPin, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 import AppDownloadCard from "./AppDownloadCard";
+import esewaLogo from '../assets/esewa.png';
+import khaltiLogo from '../assets/khalti.png';
+import imepayLogo from '../assets/IME-Pay-Logo.png';
+import sanimaLogo from '../assets/sanimabank.jpeg';
+import globalimeLogo from '../assets/globalime.png';
 
 const quickLinks = [
   { name: "About Us", href: "#about" },
@@ -161,6 +166,17 @@ const Footer = () => {
           {/* App Download Card */}
           <div className="animate-slide-up flex items-center justify-center" style={{ animationDelay: '0.4s' }}>
             <AppDownloadCard />
+          </div>
+        </div>
+        {/* Payment Methods */}
+        <div className="w-full flex flex-col items-center mt-8 mb-4">
+          <h4 className="text-lg font-semibold text-earth-brown mb-3">Payment Methods</h4>
+          <div className="flex flex-wrap gap-4 items-center justify-center">
+            <img src={esewaLogo} alt="eSewa" className="h-8 bg-white rounded shadow p-1" />
+            <img src={khaltiLogo} alt="Khalti" className="h-8 bg-white rounded shadow p-1" />
+            <img src={imepayLogo} alt="IME Pay" className="h-8 bg-white rounded shadow p-1" />
+            <img src={sanimaLogo} alt="Sanima Bank" className="h-8 bg-white rounded shadow p-1" />
+            <img src={globalimeLogo} alt="Global IME Bank" className="h-8 bg-white rounded shadow p-1" />
           </div>
         </div>
       </div>
