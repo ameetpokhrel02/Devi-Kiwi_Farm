@@ -21,6 +21,7 @@ const Navbar: React.FC = () => {
   const [active, setActive] = useState<string>("#home");
   const [showAuth, setShowAuth] = useState<'login' | 'signup' | null>(null);
   const { cart } = useCart();
+  const navigate = useNavigate();
 
   // Smooth scroll and active state on click
   const handleNavClick = (href: string) => (e: React.MouseEvent) => {
@@ -68,17 +69,28 @@ const Navbar: React.FC = () => {
     ) : null
   );
 
+  // Logo click handler
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (window.location.pathname === "/") {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.location.reload();
+    } else {
+      navigate("/");
+    }
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border animate-fade-in">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-2 hover-scale">
+          <a href="/" onClick={handleLogoClick} className="flex items-center space-x-2 hover-scale cursor-pointer">
             <div className="w-10 h-10 bg-gradient-primary rounded-full flex items-center justify-center">
               <Leaf className="w-6 h-6 text-primary-foreground" />
             </div>
             <span className="text-xl font-bold text-gradient">Devi Kiwi Farm</span>
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-6 items-center">

@@ -7,10 +7,12 @@ import khaltiLogo from '../assets/khalti.png';
 import imepayLogo from '../assets/IME-Pay-Logo.png';
 import sanimaLogo from '../assets/sanimabank.jpeg';
 import globalimeLogo from '../assets/globalime.png';
+import { Link, useLocation } from 'react-router-dom';
 
 const quickLinks = [
+  { name: "Home", href: "/" },
   { name: "About Us", href: "#about" },
-  { name: "Our Products", href: "#products" },
+  { name: "Our Products", href: "/products" },
   { name: "Sustainability", href: "#sustainability" },
   { name: "Farm Tours", href: "#tours" },
   { name: "Wholesale", href: "#wholesale" },
@@ -34,6 +36,7 @@ const socialLinks = [
 ];
 
 const Footer = () => {
+  const location = typeof window !== 'undefined' ? window.location : { pathname: '/' };
   return (
     <footer className="bg-earth-brown text-warm-cream">
       {/* Newsletter Section */}
@@ -96,12 +99,21 @@ const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <a 
-                    href={link.href}
-                    className="opacity-80 hover:opacity-100 hover:text-accent transition-all duration-300 hover:translate-x-1 inline-block"
-                  >
-                    {link.name}
-                  </a>
+                  {link.href.startsWith('/') ? (
+                    <Link
+                      to={link.href}
+                      className="opacity-80 hover:opacity-100 hover:text-accent transition-all duration-300 hover:translate-x-1 inline-block"
+                    >
+                      {link.name}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="opacity-80 hover:opacity-100 hover:text-accent transition-all duration-300 hover:translate-x-1 inline-block"
+                    >
+                      {link.name}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
