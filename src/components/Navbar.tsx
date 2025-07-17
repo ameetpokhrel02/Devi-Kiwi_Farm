@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Leaf, Home, User, ShoppingBag, Image as ImageIcon, Mail, Menu, X, UserPlus, Github, Facebook, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Login from "@/components/Login";
@@ -10,7 +11,7 @@ const navLinks = [
   { label: 'Home', href: '#home', icon: Home },
   { label: 'Products', href: '/products', icon: ShoppingBag },
   { label: 'About', href: '#about', icon: User },
-  { label: 'Our Kiwis', href: '#kiwis', icon: Leaf },
+  { label: 'Our Kiwis', href: '/our-kiwis', icon: Leaf },
   { label: 'Contact', href: '#contact', icon: Mail },
   { label: 'Blog', href: '/blog', icon: LogIn },
 ];
