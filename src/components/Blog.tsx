@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import parentsImg from '../assets/dadmom.jpg';
+import parentsImg from '../assets/patrents .png';
 import buffaloFarmer from '../assets/buffalo-farmer-cultivating-agriculture.jpg';
-import farmerPortrait from '../assets/farmer-portrait.jpg';
+import farmerPortrait from '../assets/patrents .png';
 
 const Blog: React.FC = () => {
   const [expanded, setExpanded] = useState(false);
@@ -56,7 +56,7 @@ const Blog: React.FC = () => {
       </div>
 
       {/* New Nepali CTA Section with Article */}
-      <div className="relative w-full min-h-[420px] md:min-h-[520px] flex items-center justify-center mb-12 overflow-hidden rounded-3xl shadow-xl animate-fade-in" style={{animationDelay: '0.3s'}}>
+      <div className="relative w-full min-h-[520px] flex items-center justify-center mb-12 overflow-hidden rounded-3xl shadow-xl animate-fade-in" style={{animationDelay: '0.3s'}}>
         {/* Background Image */}
         <img
           src={buffaloFarmer}
@@ -66,42 +66,51 @@ const Blog: React.FC = () => {
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/60 z-10" />
         {/* Content */}
-        <div className="relative z-20 flex flex-col items-center justify-center w-full h-full text-center px-4">
+        <div className="relative z-20 flex flex-col items-center justify-center w-full h-full text-center px-2 md:px-4">
           <div className="text-2xl md:text-4xl font-bold text-white mb-4 drop-shadow-lg animate-slide-up" style={{animationDelay: '0.4s', lineHeight: '1.3'}}>
             व्यावसायिक कृषिमा हातेमालो गरौं<br />
             उत्पादन शक्ति वृद्धि गरौं
           </div>
           {/* Article Card */}
-          <div className={`w-full max-w-3xl bg-white/95 rounded-2xl shadow-lg p-6 md:p-10 mb-6 flex flex-col md:flex-row gap-8 items-center md:items-stretch animate-fade-in transition-all duration-500 ${expanded ? 'max-h-[2000px]' : 'max-h-[350px] overflow-hidden'}`} style={{animationDelay: '0.45s'}}>
-            <div className="flex-shrink-0 w-full md:w-1/2 flex justify-center items-center">
-              <img 
-                src={parentsImg} 
-                alt="Devi and Tila Pokhrel" 
-                className="rounded-2xl shadow w-full max-w-xs h-60 object-cover border-4 border-green-200" 
-              />
+          <div className="w-full max-w-4xl bg-white/95 rounded-2xl shadow-lg p-4 md:p-8 mb-6 flex flex-col md:flex-row gap-6 md:gap-10 items-center md:items-stretch animate-fade-in transition-all duration-500">
+            {/* Image side */}
+            <div className="flex-shrink-0 w-full md:w-1/3 flex justify-center items-start md:items-center">
+              <div className="bg-green-100 rounded-xl p-2 md:p-4 flex items-center justify-center w-full h-full">
+                <img 
+                  src={parentsImg} 
+                  alt="Devi and Tila Pokhrel" 
+                  className="rounded-xl object-contain w-full h-48 md:h-60 bg-white"
+                  style={{maxWidth: '260px'}}
+                />
+              </div>
             </div>
-            <article className="flex-1 text-base md:text-lg text-gray-800 space-y-4 flex flex-col justify-center text-left md:text-left">
-              {visibleParagraphs.map((para, idx) =>
-                para.startsWith('🌱') || para.startsWith('🍇') || para.startsWith('⚙️') ? (
-                  <h3 key={idx} className="text-xl font-bold text-green-700 mt-4 mb-2">{para}</h3>
-                ) : (
-                  <p key={idx}>{para}</p>
-                )
-              )}
-            </article>
+            {/* Text side */}
+            <div className="flex-1 flex flex-col justify-between h-full">
+              <div className={`text-left md:text-left space-y-3 md:space-y-4 text-base md:text-lg text-gray-800 font-normal ${expanded ? 'max-h-[340px] md:max-h-[420px] overflow-y-auto pr-2' : 'max-h-[120px] md:max-h-[140px] overflow-hidden'}`} style={{transition: 'max-height 0.5s'}}>
+                {visibleParagraphs.map((para, idx) =>
+                  para.startsWith('🌱') || para.startsWith('🍇') || para.startsWith('⚙️') ? (
+                    <h3 key={idx} className="text-lg md:text-xl font-bold text-green-700 mt-2 mb-1">{para}</h3>
+                  ) : (
+                    <p key={idx}>{para}</p>
+                  )
+                )}
+              </div>
+              <div className="flex flex-col md:flex-row gap-3 mt-4 md:mt-6 items-center md:items-end justify-center md:justify-start">
+                {/* Read More Button */}
+                <button
+                  className="px-7 py-2 md:px-8 md:py-3 bg-green-600 hover:bg-green-700 text-white text-base md:text-lg font-semibold rounded shadow-lg transition-all duration-200 animate-fade-in border-2 border-white"
+                  style={{animationDelay: '0.5s'}}
+                  onClick={() => setExpanded(e => !e)}
+                >
+                  {expanded ? 'Show Less' : 'Read More'}
+                </button>
+                {/* CTA Button */}
+                <button className="px-7 py-2 md:px-8 md:py-3 bg-green-700 hover:bg-green-800 text-white text-base md:text-lg font-semibold rounded shadow-lg transition-all duration-200 animate-fade-in border-2 border-white" style={{animationDelay: '0.55s'}}>
+                  दर्ता गर्नुहोस् !
+                </button>
+              </div>
+            </div>
           </div>
-          {/* Read More Button */}
-          <button
-            className="px-8 py-3 bg-green-600 hover:bg-green-700 text-white text-lg font-semibold rounded shadow-lg transition-all duration-200 animate-fade-in mb-2"
-            style={{animationDelay: '0.5s'}}
-            onClick={() => setExpanded(e => !e)}
-          >
-            {expanded ? 'Show Less' : 'Read More'}
-          </button>
-          {/* CTA Button */}
-          <button className="mt-2 px-8 py-3 bg-green-700 hover:bg-green-800 text-white text-lg font-semibold rounded shadow-lg transition-all duration-200 animate-fade-in" style={{animationDelay: '0.55s'}}>
-            दर्ता गर्नुहोस् !
-          </button>
         </div>
       </div>
     </section>
