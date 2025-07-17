@@ -87,7 +87,7 @@ const CartPage: React.FC = () => {
             <div className="flex flex-col gap-4">
               {/* eSewa Payment Form */}
               <form
-                action="https://rc-epay.esewa.com.np/api/epay/main/v2/form"
+                action="https://esewa.com.np/login#/home"
                 method="POST"
                 className="flex flex-col gap-2 items-center"
               >
