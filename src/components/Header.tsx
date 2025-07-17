@@ -1,8 +1,11 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Leaf } from "lucide-react";
 
-const Header = () => {
+const Header: React.FC = () => {
+  const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
@@ -44,6 +47,22 @@ const Header = () => {
             <Button variant="hero" className="hover-lift">
               Order Fresh Kiwis
             </Button>
+          </div>
+
+          {/* Language Toggle */}
+          <div className="flex items-center gap-2 ml-4">
+            <button
+              className={`px-3 py-1 rounded font-semibold border ${i18n.language === 'en' ? 'bg-green-600 text-white' : 'bg-white text-green-700 border-green-600'}`}
+              onClick={() => i18n.changeLanguage('en')}
+            >
+              {t('language.english', 'English')}
+            </button>
+            <button
+              className={`px-3 py-1 rounded font-semibold border ${i18n.language === 'ne' ? 'bg-green-600 text-white' : 'bg-white text-green-700 border-green-600'}`}
+              onClick={() => i18n.changeLanguage('ne')}
+            >
+              {t('language.nepali', 'नेपाली')}
+            </button>
           </div>
 
           {/* Mobile menu button */}
