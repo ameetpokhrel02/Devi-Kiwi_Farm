@@ -12,25 +12,44 @@ import { useNavigate } from "react-router-dom";
 import buffaloFarmer from "@/assets/buffalo-farmer-cultivating-agriculture.jpg";
 import { ArrowLeft, ArrowRight, Play } from "lucide-react";
 import adImage from '../assets/2ads pic.jpg';
+import juiceAd from '../assets/Juice Ad - ناد.jpeg';
 
 const Index = () => {
   const navigate = useNavigate();
-  const [showAd, setShowAd] = useState(true);
+  const [showAd1, setShowAd1] = useState(true);
+  const [showAd2, setShowAd2] = useState(true);
+  const anyAdOpen = showAd1 || showAd2;
   return (
     <div className="min-h-screen">
       <Navbar />
-      {/* Ad Popup */}
-      {showAd && (
+      {/* Ads Popup */}
+      {anyAdOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="relative bg-white rounded-xl shadow-2xl p-2 max-w-xs md:max-w-md">
-            <button
-              className="absolute top-2 right-2 text-gray-600 hover:text-red-600 text-2xl font-bold"
-              onClick={() => setShowAd(false)}
-              aria-label="Close ad"
-            >
-              &times;
-            </button>
-            <img src={adImage} alt="Ad" className="rounded-lg max-w-full max-h-[70vh]" />
+          <div className="flex flex-col md:flex-row gap-6">
+            {showAd1 && (
+              <div className="relative bg-white rounded-xl shadow-2xl p-2 max-w-xs md:max-w-md">
+                <button
+                  className="absolute top-2 right-2 text-gray-600 hover:text-red-600 text-2xl font-bold"
+                  onClick={() => setShowAd1(false)}
+                  aria-label="Close ad"
+                >
+                  &times;
+                </button>
+                <img src={adImage} alt="Ad" className="rounded-lg max-w-full max-h-[70vh]" />
+              </div>
+            )}
+            {showAd2 && (
+              <div className="relative bg-white rounded-xl shadow-2xl p-2 max-w-xs md:max-w-md">
+                <button
+                  className="absolute top-2 right-2 text-gray-600 hover:text-red-600 text-2xl font-bold"
+                  onClick={() => setShowAd2(false)}
+                  aria-label="Close juice ad"
+                >
+                  &times;
+                </button>
+                <img src={juiceAd} alt="Juice Ad" className="rounded-lg max-w-full max-h-[70vh]" />
+              </div>
+            )}
           </div>
         </div>
       )}
