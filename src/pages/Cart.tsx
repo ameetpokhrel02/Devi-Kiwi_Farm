@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useCart } from '../components/CartContext';
+import esewaLogo from '../assets/esewa.png';
+import khaltiLogo from '../assets/khalti.png';
+import imeLogo from '../assets/IME-Pay-Logo.png';
 
 const CartPage: React.FC = () => {
   const { cart, removeFromCart, clearCart, updateQuantity } = useCart();
@@ -86,8 +89,9 @@ const CartPage: React.FC = () => {
               <form
                 action="https://rc-epay.esewa.com.np/api/epay/main/v2/form"
                 method="POST"
-                className="flex flex-col gap-2"
+                className="flex flex-col gap-2 items-center"
               >
+                <img src={esewaLogo} alt="eSewa" className="h-10 mb-2" />
                 <input type="hidden" name="amount" value={total} />
                 <input type="hidden" name="tax_amount" value="0" />
                 <input type="hidden" name="total_amount" value={total} />
@@ -97,17 +101,26 @@ const CartPage: React.FC = () => {
                 <input type="hidden" name="failure_url" value="http://localhost:8081/payment-failure" />
                 <button
                   type="submit"
-                  className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition font-semibold w-full"
+                  className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition font-semibold w-full flex items-center justify-center gap-2"
                 >
                   Pay with eSewa
                 </button>
               </form>
               {/* Khalti Button (not functional yet) */}
               <button
-                className="bg-purple-600 text-white px-6 py-2 rounded hover:bg-purple-700 transition font-semibold w-full opacity-60 cursor-not-allowed"
+                className="bg-purple-600 text-white px-6 py-2 rounded hover:bg-purple-700 transition font-semibold w-full flex items-center justify-center gap-2 opacity-60 cursor-not-allowed"
                 disabled
               >
+                <img src={khaltiLogo} alt="Khalti" className="h-8 mr-2" />
                 Pay with Khalti (Coming Soon)
+              </button>
+              {/* IME Pay Button (not functional yet) */}
+              <button
+                className="bg-pink-600 text-white px-6 py-2 rounded hover:bg-pink-700 transition font-semibold w-full flex items-center justify-center gap-2 opacity-60 cursor-not-allowed"
+                disabled
+              >
+                <img src={imeLogo} alt="IME Pay" className="h-8 mr-2" />
+                Pay with IME Pay (Coming Soon)
               </button>
             </div>
           </div>

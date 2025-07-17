@@ -9,6 +9,8 @@ import ProductsPage from "./pages/Products";
 import ProductDetails from "./pages/ProductDetails";
 import CartPage from "./pages/Cart";
 import BlogPage from "./pages/Blog";
+import PaymentSuccess from './pages/PaymentSuccess';
+import PaymentFailure from './pages/PaymentFailure';
 import { CartProvider } from "./components/CartContext";
 
 const queryClient = new QueryClient();
@@ -26,6 +28,8 @@ const App = () => (
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/payment-success" element={<PaymentSuccess />} />
+            <Route path="/payment-failure" element={<PaymentFailure />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
