@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -10,12 +11,29 @@ import Blog from "@/components/Blog";
 import { useNavigate } from "react-router-dom";
 import buffaloFarmer from "@/assets/buffalo-farmer-cultivating-agriculture.jpg";
 import { ArrowLeft, ArrowRight, Play } from "lucide-react";
+import adImage from '../assets/2ads pic.jpg';
 
 const Index = () => {
   const navigate = useNavigate();
+  const [showAd, setShowAd] = useState(true);
   return (
     <div className="min-h-screen">
       <Navbar />
+      {/* Ad Popup */}
+      {showAd && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="relative bg-white rounded-xl shadow-2xl p-2 max-w-xs md:max-w-md">
+            <button
+              className="absolute top-2 right-2 text-gray-600 hover:text-red-600 text-2xl font-bold"
+              onClick={() => setShowAd(false)}
+              aria-label="Close ad"
+            >
+              &times;
+            </button>
+            <img src={adImage} alt="Ad" className="rounded-lg max-w-full max-h-[70vh]" />
+          </div>
+        </div>
+      )}
       <main>
         <Hero />
         <About />
