@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import parentsImg from '../assets/patrents .png';
 import buffaloFarmer from '../assets/buffalo-farmer-cultivating-agriculture.jpg';
 import farmerPortrait from '../assets/patrents .png';
@@ -22,6 +23,7 @@ const articleParagraphs = [
 
 const Blog: React.FC = () => {
   const [expanded, setExpanded] = useState(false);
+  const navigate = useNavigate();
   const visibleParagraphs = expanded ? articleParagraphs : articleParagraphs.slice(0, 3);
 
   return (
@@ -103,7 +105,11 @@ const Blog: React.FC = () => {
                   {expanded ? 'Show Less' : 'Read More'}
                 </button>
                 {/* CTA Button */}
-                <button className="px-7 py-2 md:px-8 md:py-3 bg-green-700 hover:bg-green-800 text-white text-base md:text-lg font-semibold rounded shadow-lg transition-all duration-200 animate-fade-in border-2 border-white" style={{animationDelay: '0.55s'}}>
+                <button
+                  className="px-7 py-2 md:px-8 md:py-3 bg-green-700 hover:bg-green-800 text-white text-base md:text-lg font-semibold rounded shadow-lg transition-all duration-200 animate-fade-in border-2 border-white"
+                  style={{animationDelay: '0.55s'}}
+                  onClick={() => navigate('/signup')}
+                >
                   Register Now!
                 </button>
               </div>
