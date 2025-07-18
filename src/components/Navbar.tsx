@@ -161,11 +161,11 @@ const Navbar: React.FC<NavbarProps> = ({ onCartClick }) => {
             })}
             {/* Cart Icon Button */}
             <button
-              className="relative ml-2 p-2 rounded-full hover:bg-orange-100"
+              className="relative ml-2 p-2 rounded-full hover:bg-primary/10"
               onClick={onCartClick}
               aria-label="Open cart"
             >
-              <ShoppingCart className="w-6 h-6 text-orange-600" />
+              <ShoppingCart className="w-6 h-6 text-primary" />
               {cart.length > 0 && (
                 <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2 py-0.5">
                   {cart.reduce((sum, item) => sum + item.quantity, 0)}
