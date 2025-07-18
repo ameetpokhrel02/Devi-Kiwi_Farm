@@ -21,10 +21,6 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose }) => {
       className={`fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl z-50 transition-transform duration-300 ease-in-out flex flex-col ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
       style={{ minWidth: 350 }}
     >
-      {/* Debug Section - Remove after troubleshooting */}
-      <div className="p-2 bg-yellow-50 text-xs text-yellow-800 border-b border-yellow-200">
-        <strong>DEBUG:</strong> {JSON.stringify(cart)}
-      </div>
       {/* Header */}
       <div className="flex items-center justify-between p-6 border-b">
         <h2 className="text-2xl font-bold text-primary">Shopping Cart</h2>
