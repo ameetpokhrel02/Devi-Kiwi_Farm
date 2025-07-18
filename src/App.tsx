@@ -32,8 +32,8 @@ const App = () => {
             <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/products" element={<ProductsPage />} />
-              <Route path="/products/:id" element={<ProductDetails />} />
+              <Route path="/products" element={<ProductsPage onAddToCart={() => setCartOpen(true)} />} />
+              <Route path="/products/:id" element={<ProductDetails onAddToCart={() => setCartOpen(true)} />} />
               <Route path="/blog" element={<BlogPage />} />
               {/* Remove CartPage route */}
               <Route path="/our-kiwis" element={<OurKiwis />} />

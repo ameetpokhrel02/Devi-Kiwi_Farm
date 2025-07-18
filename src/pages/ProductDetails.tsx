@@ -5,7 +5,11 @@ import { useCart } from '../components/CartContext';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-const ProductDetails: React.FC = () => {
+interface ProductDetailsProps {
+  onAddToCart?: () => void;
+}
+
+const ProductDetails: React.FC<ProductDetailsProps> = ({ onAddToCart }) => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const product = products.find((p) => p.id === id);
@@ -39,6 +43,7 @@ const ProductDetails: React.FC = () => {
               className="bg-green-500 text-white px-6 py-2 rounded mt-4 hover:bg-green-600 transition"
               onClick={() => {
                 addToCart(product);
+                if (onAddToCart) onAddToCart();
                 alert('Added to cart!');
               }}
             >

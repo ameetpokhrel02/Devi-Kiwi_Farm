@@ -4,7 +4,11 @@ import Footer from '../components/Footer';
 import ProductList from '../components/ProductList';
 import adGif from '../assets/videos/addd.gif';
 
-const ProductsPage: React.FC = () => {
+interface ProductsPageProps {
+  onAddToCart?: () => void;
+}
+
+const ProductsPage: React.FC<ProductsPageProps> = ({ onAddToCart }) => {
   const [showAd, setShowAd] = useState(true);
 
   useEffect(() => {
@@ -31,7 +35,7 @@ const ProductsPage: React.FC = () => {
       )}
       <main className="flex-1 max-w-7xl mx-auto py-8 w-full">
         <h1 className="text-3xl font-bold mb-6 text-center">Our Products</h1>
-        <ProductList />
+        <ProductList onAddToCart={onAddToCart} />
       </main>
       <Footer />
     </div>

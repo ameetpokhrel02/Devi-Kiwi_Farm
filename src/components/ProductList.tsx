@@ -3,7 +3,11 @@ import { products } from '../data/products';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from './CartContext';
 
-const ProductList: React.FC = () => {
+interface ProductListProps {
+  onAddToCart?: () => void;
+}
+
+const ProductList: React.FC<ProductListProps> = ({ onAddToCart }) => {
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const [selectedColors, setSelectedColors] = useState<{ [id: string]: number }>({});
@@ -74,6 +78,7 @@ const ProductList: React.FC = () => {
                     className="bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 transition font-semibold text-base"
                     onClick={() => {
                       addToCart(product);
+                      if (onAddToCart) onAddToCart();
                       alert('Added to cart!');
                     }}
                   >
@@ -148,6 +153,7 @@ const ProductList: React.FC = () => {
                     className="bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 transition font-semibold text-base"
                     onClick={() => {
                       addToCart(product);
+                      if (onAddToCart) onAddToCart();
                       alert('Added to cart!');
                     }}
                   >
