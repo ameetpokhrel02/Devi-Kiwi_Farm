@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ProductList from '../components/ProductList';
-import adGif from '../assets/adss.gif';
+import adGif from '../assets/videos/addd.gif';
 
 const ProductsPage: React.FC = () => {
   const [showAd, setShowAd] = useState(true);
@@ -16,16 +16,16 @@ const ProductsPage: React.FC = () => {
       <Navbar />
       {/* Ad Popup */}
       {showAd && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
-          <div className="relative bg-white rounded-lg shadow-lg p-4 max-w-xs w-full flex flex-col items-center">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="relative bg-white rounded-xl shadow-2xl p-2 max-w-xs md:max-w-md">
             <button
-              className="absolute top-2 right-2 text-2xl text-red-500 hover:text-red-700 font-bold"
+              className="absolute top-2 right-2 text-gray-600 hover:text-red-600 text-2xl font-bold"
               onClick={() => setShowAd(false)}
               aria-label="Close ad"
             >
               &times;
             </button>
-            <img src={adGif} alt="50% Off Ad" className="w-full h-auto rounded" />
+            <img src={adGif} alt="50% Off Ad" className="rounded-lg max-w-full max-h-[70vh]" />
           </div>
         </div>
       )}
