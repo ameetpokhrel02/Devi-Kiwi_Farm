@@ -96,14 +96,14 @@ const ProductList: React.FC<ProductListProps> = ({ onAddToCart }) => {
           );
         })}
       </div>
-      {/* Mobile: horizontal scroll */}
-      <div className="md:hidden flex gap-6 overflow-x-auto p-4 snap-x">
+      {/* Mobile: vertical list */}
+      <div className="md:hidden flex flex-col gap-6 p-4">
         {products.map((product) => {
           const mainImgIdx = selectedImages[product.id] ?? 0;
           return (
             <div
               key={product.id}
-              className="min-w-[90vw] max-w-xs flex-shrink-0 flex flex-col bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden group cursor-pointer relative snap-center"
+              className="w-full flex-shrink-0 flex flex-col bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden group cursor-pointer relative"
             >
               <div className="bg-gradient-to-br from-green-200 to-green-400 flex flex-col items-center justify-center p-6 relative">
                 <img
