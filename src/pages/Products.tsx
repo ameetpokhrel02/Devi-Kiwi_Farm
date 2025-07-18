@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ProductList from '../components/ProductList';
 import adGif from '../assets/videos/addd.gif';
@@ -17,7 +16,6 @@ const ProductsPage: React.FC<ProductsPageProps> = ({ onAddToCart }) => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
       {/* Ad Popup */}
       {showAd && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
