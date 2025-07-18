@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from "@/components/Navbar";
+// import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Products from "@/components/Products";
@@ -21,7 +21,7 @@ const Index = () => {
   const anyAdOpen = showAd1 || showAd2;
   return (
     <div className="min-h-screen">
-      <Navbar />
+      {/* <Navbar /> */}
       {/* Ads Popup */}
       {anyAdOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
