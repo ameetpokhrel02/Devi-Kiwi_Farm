@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Leaf, Home, User, ShoppingBag, Image as ImageIcon, Mail, Menu, X, UserPlus, Github, Facebook, LogIn } from "lucide-react";
+import { Leaf, Home, User, ShoppingBag, Image as ImageIcon, Mail, Menu, X, UserPlus, Github, Facebook, LogIn, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Login from "@/components/Login";
 import Signup from "@/components/Signup";
@@ -45,7 +45,11 @@ const scrollOrNavigate = (href: string, navigate: any) => (e: React.MouseEvent) 
   }
 };
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  onCartClick?: () => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onCartClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [active, setActive] = useState<string>("#home");
   const [showAuth, setShowAuth] = useState<'login' | 'signup' | null>(null);
@@ -140,6 +144,7 @@ const Navbar: React.FC = () => {
                   </a>
                 );
               }
+              if (link.href === '/cart') return null;
               return (
                 <a
                   key={link.href}
@@ -154,14 +159,19 @@ const Navbar: React.FC = () => {
                 </a>
               );
             })}
-            <Link to="/cart" className="relative ml-2">
-              <ShoppingBag className="w-6 h-6 text-primary" />
+            {/* Cart Icon Button */}
+            <button
+              className="relative ml-2 p-2 rounded-full hover:bg-orange-100"
+              onClick={onCartClick}
+              aria-label="Open cart"
+            >
+              <ShoppingCart className="w-6 h-6 text-orange-600" />
               {cart.length > 0 && (
                 <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2 py-0.5">
                   {cart.reduce((sum, item) => sum + item.quantity, 0)}
                 </span>
               )}
-            </Link>
+            </button>
             {/* Auth Icon beside Contact */}
             <button
               className="ml-2 p-0 bg-transparent border-none hover:text-primary focus:outline-none"
