@@ -1,12 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ProductList from '../components/ProductList';
+import adGif from '../assets/adss.gif';
 
 const ProductsPage: React.FC = () => {
+  const [showAd, setShowAd] = useState(true);
+
+  useEffect(() => {
+    setShowAd(true); // Show ad on every mount (navigation or refresh)
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
+      {/* Ad Popup */}
+      {showAd && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+          <div className="relative bg-white rounded-lg shadow-lg p-4 max-w-xs w-full flex flex-col items-center">
+            <button
+              className="absolute top-2 right-2 text-2xl text-red-500 hover:text-red-700 font-bold"
+              onClick={() => setShowAd(false)}
+              aria-label="Close ad"
+            >
+              &times;
+            </button>
+            <img src={adGif} alt="50% Off Ad" className="w-full h-auto rounded" />
+          </div>
+        </div>
+      )}
       <main className="flex-1 max-w-7xl mx-auto py-8 w-full">
         <h1 className="text-3xl font-bold mb-6 text-center">Our Products</h1>
         <ProductList />
