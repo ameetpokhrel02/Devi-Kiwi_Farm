@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Leaf, Home, User, ShoppingBag, Image as ImageIcon, Mail, Menu, X, UserPlus, Github, Facebook, LogIn, ShoppingCart } from "lucide-react";
+import { Leaf, Home, User, ShoppingBag, Image as ImageIcon, Mail, Menu, X, UserPlus, Github, Facebook, LogIn, ShoppingCart, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Login from "@/components/Login";
 import Signup from "@/components/Signup";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from './CartContext';
+import { products as allProducts } from '../data/products';
 
 const navLinks = [
   { label: 'Home', href: '#home', icon: Home },
@@ -55,6 +56,43 @@ const Navbar: React.FC<NavbarProps> = ({ onCartClick }) => {
   const [showAuth, setShowAuth] = useState<'login' | 'signup' | null>(null);
   const { cart } = useCart();
   const navigate = useNavigate();
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const searchRef = useRef<HTMLInputElement>(null);
+  const [searchResults, setSearchResults] = useState<typeof allProducts>([]);
+
+  useEffect(() => {
+    if (showSearch && searchRef.current) {
+      searchRef.current.focus();
+    }
+  }, [showSearch]);
+
+  useEffect(() => {
+    if (searchTerm.trim() === '') {
+      setSearchResults([]);
+    } else {
+      setSearchResults(
+        allProducts.filter(p =>
+          p.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      );
+    }
+  }, [searchTerm]);
+
+  // Close search bar on outside click
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setShowSearch(false);
+      }
+    }
+    if (showSearch) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [showSearch]);
 
   // Smooth scroll and active state on click
   const handleNavClick = (href: string) => (e: React.MouseEvent) => {
@@ -183,11 +221,43 @@ const Navbar: React.FC<NavbarProps> = ({ onCartClick }) => {
             </button>
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:flex items-center gap-2">
-            <Button variant="hero" className="hover-lift ml-2">
-              Order Fresh Kiwis
-            </Button>
+          {/* Search Bar (replaces CTA Button) */}
+          <div className="hidden md:flex items-center gap-2 relative">
+            <button
+              className={`hover:bg-primary/10 p-2 rounded-full transition-colors ${showSearch ? 'bg-primary/10' : ''}`}
+              onClick={() => setShowSearch((prev) => !prev)}
+              aria-label="Search"
+            >
+              <Search className="w-6 h-6 text-primary" />
+            </button>
+            {showSearch && (
+              <div className="absolute right-0 top-12 bg-white border border-primary rounded-lg shadow-lg p-4 z-50 w-80 animate-fade-in">
+                <input
+                  ref={searchRef}
+                  type="text"
+                  className="w-full border border-primary rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                  placeholder="Search products..."
+                  value={searchTerm}
+                  onChange={e => setSearchTerm(e.target.value)}
+                />
+                {searchTerm && (
+                  <div className="mt-2 max-h-60 overflow-y-auto">
+                    {searchResults.length === 0 ? (
+                      <div className="text-muted-foreground text-sm">No products found.</div>
+                    ) : (
+                      <ul>
+                        {searchResults.map(product => (
+                          <li key={product.id} className="py-2 border-b last:border-b-0 flex items-center gap-2 cursor-pointer hover:bg-primary/10 rounded px-2">
+                            <img src={product.images[0]} alt={product.name} className="w-8 h-8 object-cover rounded" />
+                            <span className="text-sm text-primary font-medium">{product.name}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Mobile menu button */}
