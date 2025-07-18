@@ -247,7 +247,15 @@ const Navbar: React.FC<NavbarProps> = ({ onCartClick }) => {
                     ) : (
                       <ul>
                         {searchResults.map(product => (
-                          <li key={product.id} className="py-2 border-b last:border-b-0 flex items-center gap-2 cursor-pointer hover:bg-primary/10 rounded px-2">
+                          <li
+                            key={product.id}
+                            className="py-2 border-b last:border-b-0 flex items-center gap-2 cursor-pointer hover:bg-primary/10 rounded px-2"
+                            onClick={() => {
+                              navigate(`/products/${product.id}`);
+                              setShowSearch(false);
+                              setSearchTerm('');
+                            }}
+                          >
                             <img src={product.images[0]} alt={product.name} className="w-8 h-8 object-cover rounded" />
                             <span className="text-sm text-primary font-medium">{product.name}</span>
                           </li>
