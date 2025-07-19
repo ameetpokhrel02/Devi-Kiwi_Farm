@@ -3,7 +3,9 @@
 ## How can I edit this code?
 
 There are several ways of editing your application.
-![Uploading image.png…]()
+
+<img width="463" height="905" alt="image" src="https://github.com/user-attachments/assets/09d3e43d-95a5-4dc7-8cf3-508bdeb40aef" />
+
 
 
 Changes made via Lovable will be committed automatically to this repo.
