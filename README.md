@@ -13,6 +13,7 @@ Changes made via Lovable will be committed automatically to this repo.
 **Use your preferred IDE**
 
 If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+<img width="473" height="921" alt="image" src="https://github.com/user-attachments/assets/231ace64-da26-4a83-843f-c8ba3e1b3320" />
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
