@@ -13,6 +13,7 @@ import buffaloFarmer from "@/assets/buffalo-farmer-cultivating-agriculture.jpg";
 import { ArrowLeft, ArrowRight, Play } from "lucide-react";
 import adImage from '../assets/2ads pic.jpg';
 import juiceAd from '../assets/Juice Ad - ناد.jpeg';
+import kiwiAdsGif from '../assets/videos/kiwi ads 6.gif';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const Index = () => {
                 >
                   &times;
                 </button>
-                <img src={juiceAd} alt="Juice Ad" className="rounded-lg max-w-full max-h-[70vh]" />
+                <img src={kiwiAdsGif} alt="Juice Ad" className="rounded-lg max-w-full max-h-[70vh]" />
               </div>
             )}
           </div>
