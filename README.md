@@ -1,4 +1,31 @@
+# KiwiVale Farm Website
 
+KiwiVale Farm is a modern, visually appealing website dedicated to promoting and selling premium organic kiwis and kiwi-based products. The site highlights the farm’s story, sustainable practices, product offerings, and community impact, with a strong focus on quality, family tradition, and eco-friendly agriculture.
+
+## Features
+
+- **Homepage & Hero Section:**
+  - Eye-catching hero banner with animated statistics and call-to-action buttons.
+- **About Section:**
+  - Story of the farm, founders, and mission. Emphasis on organic, family-grown, quality-assured, and fresh delivery values.
+- **Product Listings:**
+  - Showcases a variety of kiwi products (Premium Gold Kiwis, Green Kiwi, Organic Green Kiwis, Mini Kiwi Mix, Kiwi Oil, Kiwi Cream) with images, pricing, and descriptions. Shopping cart functionality included.
+- **Sustainability:**
+  - Details sustainable initiatives: solar power, water conservation, zero waste, carbon neutrality, biodiversity, and community support. Virtual farm tour call-to-action.
+- **Our Services:**
+  - Highlights advanced farming services: organic fertiliser, farm mechanization, water management.
+- **Our Kiwis:**
+  - Introduces different kiwi varieties (Red, Green, Golden) with images and descriptions. May include a demo video.
+- **Blog:**
+  - Inspiring stories about the farm, founders, and local community.
+- **Contact & Footer:**
+  - Contact info, social media links, quick navigation, customer service, payment partners, and app download options.
+- **Shopping Cart & Checkout:**
+  - Add products to cart and proceed to checkout. Payment success and failure pages included.
+- **Modern UI/UX:**
+  - Built with React, Vite, Tailwind CSS, and shadcn-ui for a fast, responsive, and modern user experience with animations and interactive elements.
+
+---
 
 ## How can I edit this code?
 
