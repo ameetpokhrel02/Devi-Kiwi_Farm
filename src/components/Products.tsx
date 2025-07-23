@@ -18,10 +18,12 @@ import {
   PaginationNext,
 } from "@/components/ui/pagination";
 import { Description } from "@radix-ui/react-toast";
+import { useCart } from "./CartContext";
 
 const Products = () => {
   const products = [
     {
+      id: "1",
       name: "Premium Gold Kiwis",
       price: "$8.99",
       unit: "per lb",
@@ -31,6 +33,7 @@ const Products = () => {
       description: "Our signature golden kiwis with exceptional sweetness and smooth skin."
     },
     {
+      id: "2",
       name: "Green Kiwi",
       price: "$4.45",
       unit: "per kg",
@@ -40,6 +43,7 @@ const Products = () => {
       description: "Our signature Green Kiwi with expecetional sweetnewss and smooth skin."
     },
     {
+      id: "3",
       name: "Organic Green Kiwis",
       price: "$6.99",
       unit: "per lb",
@@ -49,6 +53,7 @@ const Products = () => {
       description: "Traditional green kiwis with the perfect balance of sweet and tart."
     },
     {
+      id: "4",
       name: "Mini Kiwi Mix",
       price: "$12.99",
       unit: "per 2lbs",
@@ -58,6 +63,7 @@ const Products = () => {
       description: "Adorable mini kiwis that you can eat whole - skin and all!"
     },
     {
+      id: "5",
       name: "Kiwi Oil",
       price: "$15.99",
       unit: "per 15ml bottle",
@@ -67,6 +73,7 @@ const Products = () => {
       description: "Premium kiwi oil, perfect for skincare and wellness. Extracted from fresh kiwi seeds for maximum purity."
     },
     {
+      id: "6",
       name: "Kiwi Cream",
       price: "$15.75",
       unit: "per 20ml bottle",
@@ -110,6 +117,8 @@ const Products = () => {
       description: "Natural disease protection"
     }
   ];
+
+  const { addToCart } = useCart();
 
   return (
     <section id="products" className="py-20">
@@ -168,7 +177,7 @@ const Products = () => {
                         <span className="text-muted-foreground ml-1">{product.unit}</span>
                       </div>
                     </div>
-                    <Button variant="hero" className="w-full group hover-lift">
+                    <Button variant="hero" className="w-full group hover-lift" onClick={() => addToCart(product)}>
                       <ShoppingCart className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
                       Add to Cart
                     </Button>
