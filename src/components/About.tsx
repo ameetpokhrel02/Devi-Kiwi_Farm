@@ -49,10 +49,10 @@ const About = () => {
               Our Story of Sustainable Excellence
             </h3>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Founded in 2070 by the Devi Pokhrel, KiwiVale Farm began as a small organic orchard with a simple mission: to grow the world's best kiwis while caring for the land that sustains us.
+              Devi and Tila Pokhrel have built more than just a farm — they’ve built a legacy of love, labor, and leadership. Their story inspires others to embrace organic farming, family teamwork, and community development.
             </p>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Today, our 200-acre certified organic farm produces over 500 tons of premium kiwis annually, all while maintaining the highest standards of environmental stewardship and sustainable agriculture.
+              As Devi Kiwi Farm continues to grow, their plans for kiwi-based products, sustainable agriculture, and empowering others shine brightly as a model for rural Nepal.
             </p>
             
             <div className="space-y-4 mb-8">
