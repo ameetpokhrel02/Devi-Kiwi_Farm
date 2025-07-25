@@ -25,9 +25,9 @@ const Products = () => {
     {
       id: "1",
       name: "Premium Gold Kiwis",
-      price: "$8.99",
+      price: 8.99,
       unit: "per lb",
-      image: KiwiImagesJuice,
+      images: [KiwiImagesJuice],
       rating: 4.9,
       features: ["Extra Sweet", "Large Size", "High Vitamin C"],
       description: "Our signature golden kiwis with exceptional sweetness and smooth skin."
@@ -35,9 +35,9 @@ const Products = () => {
     {
       id: "2",
       name: "Green Kiwi",
-      price: "$4.45",
+      price: 4.45,
       unit: "per kg",
-      image: KiwiImages2,
+      images: [KiwiImages2],
       rating: 4.5,
       features: ["High Vitamin C", "Medium Size", "Extra Sweet"],
       description: "Our signature Green Kiwi with expecetional sweetnewss and smooth skin."
@@ -45,9 +45,9 @@ const Products = () => {
     {
       id: "3",
       name: "Organic Green Kiwis",
-      price: "$6.99",
+      price: 6.99,
       unit: "per lb",
-      image: kiwiOilImage,
+      images: [kiwiOilImage],
       rating: 4.8,
       features: ["Classic Taste", "Rich Fiber", "Antioxidant Rich"],
       description: "Traditional green kiwis with the perfect balance of sweet and tart."
@@ -55,9 +55,9 @@ const Products = () => {
     {
       id: "4",
       name: "Mini Kiwi Mix",
-      price: "$12.99",
+      price: 12.99,
       unit: "per 2lbs",
-      image: KiwiImagesPickle,
+      images: [KiwiImagesPickle],
       rating: 4.9,
       features: ["Bite-Sized", "No Peeling", "Super Sweet"],
       description: "Adorable mini kiwis that you can eat whole - skin and all!"
@@ -65,9 +65,9 @@ const Products = () => {
     {
       id: "5",
       name: "Kiwi Oil",
-      price: "$15.99",
+      price: 15.99,
       unit: "per 15ml bottle",
-      image: kiwiOilImage,
+      images: [kiwiOilImage],
       rating: 5.0,
       features: ["100% Natural Oil", "Cold Pressed", "Rich in Antioxidants"],
       description: "Premium kiwi oil, perfect for skincare and wellness. Extracted from fresh kiwi seeds for maximum purity."
@@ -75,9 +75,9 @@ const Products = () => {
     {
       id: "6",
       name: "Kiwi Cream",
-      price: "$15.75",
+      price: 15.75,
       unit: "per 20ml bottle",
-      image: kiwiCreamImage,
+      images: [kiwiCreamImage],
       rating: 5.0,
       features: ["100% natural Cream", "Rich in Vitamin D"],
       description: "Premium kiwi cream, perfect for skincare and wellness."
@@ -141,7 +141,7 @@ const Products = () => {
                 <Card key={index} className="w-full sm:max-w-xs sm:min-w-[320px] border-0 bg-gradient-card hover-lift overflow-hidden mb-8 flex-shrink-0">
                   <div className="relative">
                     <img 
-                      src={product.image} 
+                      src={product.images[0]} 
                       alt={product.name}
                       className="w-full h-48 object-contain hover-scale bg-white"
                       style={{ maxHeight: '200px', objectFit: 'contain' }}

@@ -62,7 +62,7 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Custom Kiwi Farm Colors
+				// Custom Kiwi Farm Colors and fruits
 				'kiwi-green': 'hsl(var(--kiwi-green))',
 				'kiwi-light': 'hsl(var(--kiwi-light))',
 				'earth-brown': 'hsl(var(--earth-brown))',
