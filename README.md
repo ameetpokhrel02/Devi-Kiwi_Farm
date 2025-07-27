@@ -136,7 +136,7 @@ kiwi-farm-bloom-landing-main/
 
 1. **Clone the repository**
    ```bash
-   git clone <YOUR_GIT_URL>
+git clone <YOUR_GIT_URL>
    cd kiwi-farm-bloom-landing-main
    ```
 
@@ -149,7 +149,7 @@ kiwi-farm-bloom-landing-main/
 
 3. **Start development server**
    ```bash
-   npm run dev
+npm run dev
    # or
    bun dev
    ```
