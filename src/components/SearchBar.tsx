@@ -18,7 +18,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ isOpen, onClose, onToggle }) => {
   const searchRef = useRef<HTMLInputElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
 
-  // Focus input when search opens
+  // Focus input when search opens.
   useEffect(() => {
     if (isOpen && searchRef.current) {
       searchRef.current.focus();
