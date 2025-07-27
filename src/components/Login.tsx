@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Mail, Lock, Facebook, Github, LogIn, UserPlus, User } from 'lucide-react';
+import { Mail, Lock, Facebook, Github, LogIn, UserPlus, User, CheckCircle, XCircle } from 'lucide-react';
+import { useUser } from './UserContext';
 
 interface LoginProps {
   onClose?: () => void;
@@ -8,48 +9,85 @@ interface LoginProps {
 }
 
 const Login: React.FC<LoginProps> = ({ onClose, asModal, onSwitchToSignup }) => {
+  const { login, signup, isAuthenticated, user } = useUser();
   const [form, setForm] = useState({ email: '', password: '' });
   const [signupForm, setSignupForm] = useState({ name: '', email: '', password: '', terms: false });
   const [error, setError] = useState('');
   const [signupError, setSignupError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [signupSuccess, setSignupSuccess] = useState('');
   const [loading, setLoading] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
 
   // Login handlers
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    setError(''); // Clear error when user types
   };
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setSuccess('');
     setLoading(true);
-    setTimeout(() => {
+
+    if (!form.email || !form.password) {
+      setError('Please fill in all fields.');
       setLoading(false);
-      if (!form.email || !form.password) {
-        setError('Please fill in all fields.');
+      return;
+    }
+
+    try {
+      const result = await login(form.email, form.password);
+      if (result.success) {
+        setSuccess(result.message);
+        setTimeout(() => {
+          if (onClose) onClose();
+        }, 1500);
       } else {
-        if (onClose) onClose();
+        setError(result.message);
       }
-    }, 1000);
+    } catch (err) {
+      setError('Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   // Signup handlers
   const handleSignupChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setSignupForm({ ...signupForm, [name]: type === 'checkbox' ? checked : value });
+    setSignupError(''); // Clear error when user types
   };
-  const handleSignupSubmit = (e: React.FormEvent) => {
+
+  const handleSignupSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSignupError('');
+    setSignupSuccess('');
     setLoading(true);
-    setTimeout(() => {
+
+    if (!signupForm.name || !signupForm.email || !signupForm.password || !signupForm.terms) {
+      setSignupError('Please fill in all fields and agree to terms.');
       setLoading(false);
-      if (!signupForm.name || !signupForm.email || !signupForm.password || !signupForm.terms) {
-        setSignupError('Please fill in all fields and agree to terms.');
+      return;
+    }
+
+    try {
+      const result = await signup(signupForm.name, signupForm.email, signupForm.password);
+      if (result.success) {
+        setSignupSuccess(result.message);
+        setTimeout(() => {
+          if (onClose) onClose();
+        }, 1500);
       } else {
-        if (onClose) onClose();
+        setSignupError(result.message);
       }
-    }, 1000);
+    } catch (err) {
+      setSignupError('Signup failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   // Always render the close button and make sure it works in all states
@@ -67,6 +105,31 @@ const Login: React.FC<LoginProps> = ({ onClose, asModal, onSwitchToSignup }) => 
       </button>
     )
   );
+
+  // If user is already authenticated, show user info
+  if (isAuthenticated && user) {
+    return (
+      <div className={asModal ? 'fixed inset-0 z-50 flex justify-center bg-background/80 mt-24 md:items-start items-start' : ''}>
+        <div className={`flex w-full max-w-md mx-auto rounded-2xl shadow-2xl overflow-hidden relative ${asModal ? 'animate-scale-in' : 'my-12'}`} style={{background: 'hsl(var(--background))'}}>
+          {renderCloseButton()}
+          <div className="w-full p-8 flex flex-col justify-center bg-gradient-to-br from-primary/10 to-accent/10">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <User className="w-8 h-8 text-green-600" />
+              </div>
+              <h2 className="text-2xl font-bold mb-2 text-primary">Welcome back!</h2>
+              <p className="text-muted-foreground mb-4">{user.name}</p>
+              <p className="text-sm text-muted-foreground mb-6">{user.email}</p>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <p>Member since: {new Date(user.createdAt).toLocaleDateString()}</p>
+                <p>Last login: {new Date(user.lastLogin).toLocaleDateString()}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={asModal ? 'fixed inset-0 z-50 flex justify-center bg-background/80 mt-24 md:items-start items-start' : ''}>
@@ -102,10 +165,21 @@ const Login: React.FC<LoginProps> = ({ onClose, asModal, onSwitchToSignup }) => 
                 className="w-full pl-10 pr-4 py-2 bg-white border border-border rounded-full text-primary placeholder-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
               />
             </div>
-            {error && <div className="text-red-500 text-sm text-center">{error}</div>}
+            {error && (
+              <div className="flex items-center gap-2 text-red-500 text-sm">
+                <XCircle className="w-4 h-4" />
+                {error}
+              </div>
+            )}
+            {success && (
+              <div className="flex items-center gap-2 text-green-500 text-sm">
+                <CheckCircle className="w-4 h-4" />
+                {success}
+              </div>
+            )}
             <button
               type="submit"
-              className="w-full py-2 rounded-full font-semibold text-lg bg-gradient-to-r from-primary to-accent text-white shadow-lg hover:scale-105 transition-transform duration-300"
+              className="w-full py-2 rounded-full font-semibold text-lg bg-gradient-to-r from-primary to-accent text-white shadow-lg hover:scale-105 transition-transform duration-300 disabled:opacity-50"
               disabled={loading}
             >
               {loading ? 'Logging in...' : 'LOGIN'}
@@ -166,10 +240,21 @@ const Login: React.FC<LoginProps> = ({ onClose, asModal, onSwitchToSignup }) => 
                 <input type="checkbox" id="signup-terms" name="terms" checked={signupForm.terms} onChange={handleSignupChange} className="accent-primary" />
                 <label htmlFor="signup-terms" className="text-xs text-primary">I agree to the <a href="#" className="underline text-primary">terms and conditions</a></label>
               </div>
-              {signupError && <div className="text-red-500 text-sm text-center">{signupError}</div>}
+              {signupError && (
+                <div className="flex items-center gap-2 text-red-500 text-sm">
+                  <XCircle className="w-4 h-4" />
+                  {signupError}
+                </div>
+              )}
+              {signupSuccess && (
+                <div className="flex items-center gap-2 text-green-500 text-sm">
+                  <CheckCircle className="w-4 h-4" />
+                  {signupSuccess}
+                </div>
+              )}
               <button
                 type="submit"
-                className="w-full py-2 rounded-full font-semibold text-lg bg-gradient-to-r from-primary to-accent text-white shadow-lg hover:scale-105 transition-transform duration-300"
+                className="w-full py-2 rounded-full font-semibold text-lg bg-gradient-to-r from-primary to-accent text-white shadow-lg hover:scale-105 transition-transform duration-300 disabled:opacity-50"
                 disabled={loading}
               >
                 {loading ? 'Signing up...' : 'Sign Up'}
