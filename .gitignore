@@ -35,3 +35,6 @@ docker-compose.dev.yml
 docker-compose.test.yml
 .dockerignore
 Dockerfile
+
+# requirements
+requirements.txt
