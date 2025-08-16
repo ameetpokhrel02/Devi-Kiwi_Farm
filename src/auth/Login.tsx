@@ -1,2 +1,2 @@
-import Login from '../components/Login';
+import Login from '../components/Signup';
 export default Login;
