@@ -5,6 +5,13 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import Login from "./auth/Login";
+import Signup from "./auth/Signup";
+import ForgotPassword from "./auth/ForgotPassword";
+import OtpVerification from "./auth/OtpVerification";
+import ChangePassword from "./auth/ChangePassword";
+import UpdatePassword from "./auth/UpdatePassword";
+import PasswordSuccess from "./auth/PasswordSuccess";
 import NotFound from "./pages/NotFound";
 import ProductsPage from "./pages/Products";
 import ProductDetails from "./pages/ProductDetails";
@@ -45,6 +52,13 @@ const App = () => {
                 <Route path="/search" element={<Search />} />
                 <Route path="/payment-success" element={<PaymentSuccess />} />
                 <Route path="/payment-failure" element={<PaymentFailure />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/otp-verification" element={<OtpVerification />} />
+                <Route path="/change-password" element={<ChangePassword />} />
+                <Route path="/update-password" element={<UpdatePassword />} />
+                <Route path="/password-success" element={<PasswordSuccess />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
