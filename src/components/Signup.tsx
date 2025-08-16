@@ -31,15 +31,15 @@ const Signup: React.FC<SignupProps> = ({ onClose, asModal }) => {
   };
 
   return (
-    <div className={asModal ? 'fixed inset-0 z-50 flex justify-center bg-black/40 mt-24 md:items-start items-start' : ''}>
-      <div className={`bg-white rounded-2xl shadow-lg p-8 w-full max-w-md mx-auto ${asModal ? 'animate-scale-in' : 'my-12'}`}>
+    <div className={asModal ? 'fixed inset-0 z-50 flex justify-center items-center bg-black/40 backdrop-blur-lg' : ''}>
+      <div className={`bg-gradient-to-br from-white/70 to-primary/10 rounded-2xl shadow-2xl ring-2 ring-primary/30 p-8 w-full max-w-md mx-auto ${asModal ? 'animate-scale-in' : 'my-12'}`}>
         {asModal && (
           <button onClick={onClose} className="absolute top-4 right-4 text-xl font-bold text-gray-400 hover:text-primary">&times;</button>
         )}
-        <h2 className="text-2xl font-bold mb-6 text-center text-primary">Sign Up</h2>
+  <h2 className="text-3xl font-bold mb-4 text-center text-primary drop-shadow-lg">Create Account</h2>
+  <p className="text-muted-foreground mb-6 text-center">Please enter your details to sign up.</p>
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-primary mb-2">Name</label>
+          <div className="relative mb-4">
             <input
               type="text"
               id="name"
@@ -47,11 +47,11 @@ const Signup: React.FC<SignupProps> = ({ onClose, asModal }) => {
               value={form.name}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/40"
+              placeholder="Name"
+              className="w-full pl-4 pr-4 py-3 bg-white/80 border border-primary/30 rounded-full text-primary placeholder-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/40 shadow-sm"
             />
           </div>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-primary mb-2">Email</label>
+          <div className="relative mb-4">
             <input
               type="email"
               id="email"
@@ -59,11 +59,11 @@ const Signup: React.FC<SignupProps> = ({ onClose, asModal }) => {
               value={form.email}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/40"
+              placeholder="Email"
+              className="w-full pl-4 pr-4 py-3 bg-white/80 border border-primary/30 rounded-full text-primary placeholder-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/40 shadow-sm"
             />
           </div>
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-primary mb-2">Password</label>
+          <div className="relative mb-4">
             <input
               type="password"
               id="password"
@@ -71,13 +71,14 @@ const Signup: React.FC<SignupProps> = ({ onClose, asModal }) => {
               value={form.password}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/40"
+              placeholder="Password"
+              className="w-full pl-4 pr-4 py-3 bg-white/80 border border-primary/30 rounded-full text-primary placeholder-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/40 shadow-sm"
             />
           </div>
           {error && <div className="text-red-500 text-sm text-center">{error}</div>}
           <button
             type="submit"
-            className="w-full bg-gradient-primary text-primary-foreground font-semibold py-3 rounded-lg hover:scale-105 transition-transform duration-300"
+            className="w-full py-3 rounded-full font-semibold text-lg bg-gradient-to-r from-primary to-accent text-white shadow-lg hover:scale-105 transition-transform duration-300 disabled:opacity-50 drop-shadow-lg"
             disabled={loading}
           >
             {loading ? 'Signing up...' : 'Sign Up'}

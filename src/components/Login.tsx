@@ -132,15 +132,16 @@ const Login: React.FC<LoginProps> = ({ onClose, asModal, onSwitchToSignup }) => 
   }
 
   return (
-    <div className={asModal ? 'fixed inset-0 z-50 flex justify-center bg-background/80 mt-24 md:items-start items-start' : ''}>
-      <div className={`flex w-full max-w-2xl mx-auto rounded-2xl shadow-2xl overflow-hidden relative ${asModal ? 'animate-scale-in' : 'my-12'}`} style={{background: 'hsl(var(--background))'}}>
+    <div className={asModal ? 'fixed inset-0 z-50 flex justify-center items-center bg-black/40 backdrop-blur-lg' : ''}>
+      <div className={`flex w-full max-w-md mx-auto rounded-2xl shadow-2xl ring-2 ring-primary/30 overflow-hidden relative ${asModal ? 'animate-scale-in' : 'my-12'} bg-gradient-to-br from-white/70 to-primary/10`}>
         {renderCloseButton()}
         {/* Login Side */}
-        <div className="flex-1 p-8 flex flex-col justify-center bg-gradient-to-br from-primary/10 to-accent/10">
-          <h2 className="text-2xl font-bold mb-6 text-left text-primary">Member Login</h2>
+  <div className="flex-1 p-8 flex flex-col justify-center items-center bg-gradient-to-br from-primary/10 to-accent/10">
+          <h2 className="text-3xl font-bold mb-4 text-center text-primary drop-shadow-lg">Welcome back</h2>
+          <p className="text-muted-foreground mb-6 text-center">Please enter your details to sign in.</p>
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="relative">
-              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-primary w-5 h-5" />
+            <div className="relative mb-4">
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-primary w-5 h-5" />
               <input
                 type="email"
                 id="email"
@@ -149,11 +150,11 @@ const Login: React.FC<LoginProps> = ({ onClose, asModal, onSwitchToSignup }) => 
                 onChange={handleChange}
                 required
                 placeholder="Email"
-                className="w-full pl-10 pr-4 py-2 bg-white border border-border rounded-full text-primary placeholder-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                className="w-full pl-12 pr-4 py-3 bg-white/80 border border-primary/30 rounded-full text-primary placeholder-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/40 shadow-sm"
               />
             </div>
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-primary w-5 h-5" />
+            <div className="relative mb-4">
+              <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-primary w-5 h-5" />
               <input
                 type="password"
                 id="password"
@@ -162,7 +163,7 @@ const Login: React.FC<LoginProps> = ({ onClose, asModal, onSwitchToSignup }) => 
                 onChange={handleChange}
                 required
                 placeholder="Password"
-                className="w-full pl-10 pr-4 py-2 bg-white border border-border rounded-full text-primary placeholder-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                className="w-full pl-12 pr-4 py-3 bg-white/80 border border-primary/30 rounded-full text-primary placeholder-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/40 shadow-sm"
               />
             </div>
             {error && (
@@ -179,16 +180,16 @@ const Login: React.FC<LoginProps> = ({ onClose, asModal, onSwitchToSignup }) => 
             )}
             <button
               type="submit"
-              className="w-full py-2 rounded-full font-semibold text-lg bg-gradient-to-r from-primary to-accent text-white shadow-lg hover:scale-105 transition-transform duration-300 disabled:opacity-50"
+              className="w-full py-3 rounded-full font-semibold text-lg bg-gradient-to-r from-primary to-accent text-white shadow-lg hover:scale-105 transition-transform duration-300 disabled:opacity-50 drop-shadow-lg"
               disabled={loading}
             >
-              {loading ? 'Logging in...' : 'LOGIN'}
+              {loading ? 'Logging in...' : 'Login'}
             </button>
           </form>
           <div className="flex justify-between mt-4 text-sm">
             <button className="text-primary hover:underline">Forgot Password?</button>
-            <button className="text-primary hover:underline flex items-center gap-1" onClick={() => setShowSignupForm(true)}>
-              <UserPlus className="w-4 h-4" /> Create account
+            <button className="text-primary font-semibold hover:underline flex items-center gap-1" onClick={() => setShowSignupForm(true)}>
+              <UserPlus className="w-4 h-4" /> Create Account
             </button>
           </div>
         </div>
@@ -261,13 +262,13 @@ const Login: React.FC<LoginProps> = ({ onClose, asModal, onSwitchToSignup }) => 
               </button>
               {/* Social login row below form */}
               <div className="flex gap-4 justify-center mt-6">
-                <button className="rounded-full bg-white/10 border border-primary p-3 hover:bg-primary/10 transition-colors" type="button">
+                <button className="rounded-full bg-white/30 border border-primary p-3 hover:bg-primary/10 transition-colors shadow-md" type="button">
                   <Mail className="w-6 h-6 text-primary" />
                 </button>
-                <button className="rounded-full bg-white/10 border border-blue-500 p-3 hover:bg-blue-500/10 transition-colors" type="button">
+                <button className="rounded-full bg-white/30 border border-blue-500 p-3 hover:bg-blue-500/10 transition-colors shadow-md" type="button">
                   <Facebook className="w-6 h-6 text-blue-500" />
                 </button>
-                <button className="rounded-full bg-white/10 border border-slate-400 p-3 hover:bg-slate-400/10 transition-colors" type="button">
+                <button className="rounded-full bg-white/30 border border-slate-400 p-3 hover:bg-slate-400/10 transition-colors shadow-md" type="button">
                   <Github className="w-6 h-6 text-slate-700" />
                 </button>
               </div>
