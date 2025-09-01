@@ -28,6 +28,8 @@ import { useState } from "react";
 import CartDrawer from "./components/CartDrawer";
 import Navbar from "./components/Navbar";
 
+
+
 const queryClient = new QueryClient();
 
 const App = () => {
