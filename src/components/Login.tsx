@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Lock, Facebook, Github, LogIn, UserPlus, User, CheckCircle, XCircle } from 'lucide-react';
+import { Login } from '../components/Login';
 import { useUser } from './UserContext';
 
 interface LoginProps {
@@ -312,4 +313,4 @@ const Login: React.FC<LoginProps> = ({ onClose, asModal, onSwitchToSignup }) => 
   );
 };
 
-//export default Login; 
+//export default Login;
