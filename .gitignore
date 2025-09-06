@@ -38,3 +38,6 @@ Dockerfile
 
 # requirements
 requirements.txt
+
+# Backend
+venv
