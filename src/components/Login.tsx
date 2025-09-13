@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { loginApi } from '../auth/api';
 import { Mail, Lock, Facebook, Github, LogIn, UserPlus, User, CheckCircle, XCircle } from 'lucide-react';
 // Removed circular import
 import { useUser } from './UserContext';
@@ -39,14 +40,17 @@ const Login: React.FC<LoginProps> = ({ onClose, asModal, onSwitchToSignup }) => 
     }
 
     try {
-      const result = await login(form.email, form.password);
-      if (result.success) {
-        setSuccess(result.message);
+      // Use username for Django backend (not email)
+      const result = await loginApi(form.email, form.password);
+      if (result.access) {
+        setSuccess('Login successful!');
+        localStorage.setItem('token', result.access);
+        // Optionally set user state here
         setTimeout(() => {
           if (onClose) onClose();
         }, 1500);
       } else {
-        setError(result.message);
+        setError(result.error || 'Login failed. Please try again.');
       }
     } catch (err) {
       setError('Login failed. Please try again.');
