@@ -1,0 +1,23 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+          - "8000:8000"
+      backend:
+        build:
+          context: .
+          dockerfile: Dockerfile
+        ports:
+          - "8000:8000"
+        volumes:
+          - ./backend:/app
+        environment:
+          - DEBUG=1
+      # Uncomment and configure if you want to run frontend in Docker
+      # frontend:
+      #   build:
+      #     context: ./src
+      #     dockerfile: Dockerfile
+      #   ports:
+      #     - "3000:3000"
